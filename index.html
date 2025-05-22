@@ -2,35 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Under Construction - Mobile Puzzle</title>
+  <title>Under Construction Puzzle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       background: #111;
-      height: 100%;
       font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    canvas {
-      display: block;
-    }
+
     .message {
-      position: absolute;
-      top: 10%;
-      width: 100%;
-      text-align: center;
+      padding: 20px;
+      background: #222;
       color: white;
-      z-index: 1;
-      pointer-events: none;
-      padding: 0 10px;
+      text-align: center;
+      flex: 0 0 auto;
     }
+
+    .message h1 {
+      margin: 0 0 10px;
+    }
+
     .message a {
       color: #00ffff;
-      font-size: 1.2em;
       text-decoration: none;
-      pointer-events: auto;
+    }
+
+    .message a:hover {
+      text-decoration: underline;
+    }
+
+    #puzzle-container {
+      flex: 1 1 auto;
+    }
+
+    canvas {
+      display: block;
     }
   </style>
 </head>
@@ -41,13 +52,15 @@
     <a href="https://www.linkedin.com/in/jahed-murad-sunny/" target="_blank">Visit LinkedIn</a>
   </div>
 
+  <div id="puzzle-container"></div>
+
   <script type="module">
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
 
     let scene = new THREE.Scene();
     let camera = new THREE.OrthographicCamera();
     let renderer = new THREE.WebGLRenderer({antialias: true});
-    document.body.appendChild(renderer.domElement);
+    document.getElementById('puzzle-container').appendChild(renderer.domElement);
 
     const tileSize = 1;
     const gridSize = 3;
@@ -55,7 +68,7 @@
     let tiles = [];
 
     function resizeCamera() {
-      const aspect = window.innerWidth / window.innerHeight;
+      const aspect = window.innerWidth / (window.innerHeight - document.querySelector('.message').offsetHeight);
       const viewSize = 4;
       camera.left = -viewSize * aspect / 2;
       camera.right = viewSize * aspect / 2;
@@ -65,7 +78,7 @@
       camera.far = 100;
       camera.updateProjectionMatrix();
       camera.position.z = 10;
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight - document.querySelector('.message').offsetHeight);
     }
 
     window.addEventListener('resize', resizeCamera);
@@ -73,7 +86,7 @@
     scene.add(new THREE.AmbientLight(0xffffff, 1));
 
     const loader = new THREE.TextureLoader();
-    loader.load('puzzl.png', texture => {
+    loader.load('puzzle.png', texture => {
       const tileGeo = new THREE.BoxGeometry(tileSize, tileSize, 0.2);
       for (let y = 0; y < gridSize; y++) {
         for (let x = 0; x < gridSize; x++) {
@@ -142,7 +155,7 @@
     window.addEventListener('click', e => {
       const mouse = new THREE.Vector2(
         (e.clientX / window.innerWidth) * 2 - 1,
-        -(e.clientY / window.innerHeight) * 2 + 1
+        -(e.clientY - document.querySelector('.message').offsetHeight) / (window.innerHeight - document.querySelector('.message').offsetHeight) * 2 + 1
       );
       const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouse, camera);
