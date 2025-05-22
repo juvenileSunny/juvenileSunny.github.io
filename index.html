@@ -2,19 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>I am Ironman!!!</title>
+  <title>Under Construction - Mobile Puzzle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { margin: 0; overflow: hidden; background: #111; }
-    canvas { display: block; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #111;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    canvas {
+      display: block;
+    }
     .message {
       position: absolute;
       top: 10%;
       width: 100%;
       text-align: center;
       color: white;
-      font-family: Arial, sans-serif;
       z-index: 1;
       pointer-events: none;
+      padding: 0 10px;
     }
     .message a {
       color: #00ffff;
@@ -27,7 +37,7 @@
 <body>
   <div class="message">
     <h1>This Website is Under Construction</h1>
-    <p>Solve (use your mouse from desktop, cellphone won't work) the image puzzle while we build something awesome!</p>
+    <p>Solve the puzzle while we build something awesome!</p>
     <a href="https://www.linkedin.com/in/jahed-murad-sunny/" target="_blank">Visit LinkedIn</a>
   </div>
 
@@ -35,9 +45,8 @@
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
 
     let scene = new THREE.Scene();
-    let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    let camera = new THREE.OrthographicCamera();
     let renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
     const tileSize = 1;
@@ -45,31 +54,41 @@
     let empty = {x: 2, y: 2};
     let tiles = [];
 
-    camera.position.z = 5;
-    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-    let light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(5, 5, 5);
-    scene.add(light);
+    function resizeCamera() {
+      const aspect = window.innerWidth / window.innerHeight;
+      const viewSize = 4;
+      camera.left = -viewSize * aspect / 2;
+      camera.right = viewSize * aspect / 2;
+      camera.top = viewSize / 2;
+      camera.bottom = -viewSize / 2;
+      camera.near = 0.1;
+      camera.far = 100;
+      camera.updateProjectionMatrix();
+      camera.position.z = 10;
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    window.addEventListener('resize', resizeCamera);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1));
 
     const loader = new THREE.TextureLoader();
-    loader.load('puzzle.png', texture => {
+    loader.load('puzzl.png', texture => {
       const tileGeo = new THREE.BoxGeometry(tileSize, tileSize, 0.2);
       for (let y = 0; y < gridSize; y++) {
         for (let x = 0; x < gridSize; x++) {
           if (x === 2 && y === 2) continue;
-
           const canvas = document.createElement('canvas');
           canvas.width = 256; canvas.height = 256;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(
             texture.image,
-            x * (texture.image.width / gridSize),
-            y * (texture.image.height / gridSize),
+            x * texture.image.width / gridSize,
+            y * texture.image.height / gridSize,
             texture.image.width / gridSize,
             texture.image.height / gridSize,
             0, 0, canvas.width, canvas.height
           );
-
           const canvasTex = new THREE.CanvasTexture(canvas);
           const mat = new THREE.MeshStandardMaterial({ map: canvasTex });
           const tile = new THREE.Mesh(tileGeo, mat);
@@ -79,29 +98,29 @@
           tiles.push(tile);
         }
       }
-
       shuffle();
+      resizeCamera();
       animate();
     });
 
     function getAdjacent(x, y) {
       return tiles.filter(t => {
-        let dx = Math.abs(t.userData.x - x);
-        let dy = Math.abs(t.userData.y - y);
-        return (dx + dy === 1);
+        const dx = Math.abs(t.userData.x - x);
+        const dy = Math.abs(t.userData.y - y);
+        return dx + dy === 1;
       });
     }
 
     function shuffle(count = 100) {
       for (let i = 0; i < count; i++) {
-        let options = getAdjacent(empty.x, empty.y);
-        let tile = options[Math.floor(Math.random() * options.length)];
+        const options = getAdjacent(empty.x, empty.y);
+        const tile = options[Math.floor(Math.random() * options.length)];
         move(tile, false);
       }
     }
 
     function move(tile, checkWin = true) {
-      let {x, y} = tile.userData;
+      const {x, y} = tile.userData;
       if (Math.abs(x - empty.x) + Math.abs(y - empty.y) === 1) {
         tile.userData.x = empty.x;
         tile.userData.y = empty.y;
@@ -114,27 +133,21 @@
 
     function isSolved() {
       return tiles.every(t => {
-        let correctX = (t.userData.num - 1) % gridSize;
-        let correctY = Math.floor((t.userData.num - 1) / gridSize);
+        const correctX = (t.userData.num - 1) % gridSize;
+        const correctY = Math.floor((t.userData.num - 1) / gridSize);
         return t.userData.x === correctX && t.userData.y === correctY;
       });
     }
 
-    window.addEventListener('click', (e) => {
-      let mouse = new THREE.Vector2(
+    window.addEventListener('click', e => {
+      const mouse = new THREE.Vector2(
         (e.clientX / window.innerWidth) * 2 - 1,
         -(e.clientY / window.innerHeight) * 2 + 1
       );
-      let raycaster = new THREE.Raycaster();
+      const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouse, camera);
-      let intersects = raycaster.intersectObjects(tiles);
+      const intersects = raycaster.intersectObjects(tiles);
       if (intersects.length > 0) move(intersects[0].object);
-    });
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth/window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
     function animate() {
