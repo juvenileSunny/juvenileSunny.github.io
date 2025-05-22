@@ -23,21 +23,14 @@
       flex: 0 0 auto;
     }
 
-    .message h1 {
-      margin: 0 0 10px;
-    }
-
     .message a {
       color: #00ffff;
       text-decoration: none;
     }
 
-    .message a:hover {
-      text-decoration: underline;
-    }
-
     #puzzle-container {
       flex: 1 1 auto;
+      position: relative;
     }
 
     canvas {
@@ -68,8 +61,12 @@
     let tiles = [];
 
     function resizeCamera() {
-      const aspect = window.innerWidth / (window.innerHeight - document.querySelector('.message').offsetHeight);
+      const container = document.getElementById('puzzle-container');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      const aspect = width / height;
       const viewSize = 4;
+
       camera.left = -viewSize * aspect / 2;
       camera.right = viewSize * aspect / 2;
       camera.top = viewSize / 2;
@@ -78,7 +75,8 @@
       camera.far = 100;
       camera.updateProjectionMatrix();
       camera.position.z = 10;
-      renderer.setSize(window.innerWidth, window.innerHeight - document.querySelector('.message').offsetHeight);
+
+      renderer.setSize(width, height);
     }
 
     window.addEventListener('resize', resizeCamera);
@@ -152,15 +150,26 @@
       });
     }
 
-    window.addEventListener('click', e => {
+    function handleInteraction(clientX, clientY) {
+      const rect = renderer.domElement.getBoundingClientRect();
       const mouse = new THREE.Vector2(
-        (e.clientX / window.innerWidth) * 2 - 1,
-        -(e.clientY - document.querySelector('.message').offsetHeight) / (window.innerHeight - document.querySelector('.message').offsetHeight) * 2 + 1
+        ((clientX - rect.left) / rect.width) * 2 - 1,
+        -((clientY - rect.top) / rect.height) * 2 + 1
       );
       const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(tiles);
       if (intersects.length > 0) move(intersects[0].object);
+    }
+
+    renderer.domElement.addEventListener('click', e => {
+      handleInteraction(e.clientX, e.clientY);
+    });
+
+    renderer.domElement.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
+      }
     });
 
     function animate() {
