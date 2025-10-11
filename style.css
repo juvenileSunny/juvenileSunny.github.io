@@ -5,11 +5,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #0a0a0a;
   font-family: 'Poppins', sans-serif;
   color: #f5f5f5;
   overflow-x: hidden;
+  padding-top: 90px; /* prevent content hiding under header */
 }
 
 /* === Background === */
@@ -39,8 +44,7 @@ body {
   margin: auto;
 }
 
-/* === Header === */
-/* === Fixed Header === */
+/* === Header (Fixed Navbar) === */
 header {
   position: fixed;
   top: 0;
@@ -61,13 +65,6 @@ header.scrolled {
   background: rgba(10, 10, 10, 0.95);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
-
-
-/* Prevent page content from hiding under the fixed header */
-body {
-  padding-top: 90px;
-}
-
 
 .logo {
   font-size: 1.5rem;
@@ -140,25 +137,6 @@ nav a:hover {
   line-height: 1.6;
 }
 
-.buttons {
-  display: flex;
-  gap: 1rem;
-}
-
-.btn-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.3s;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #00f6ff;
-}
-
 /* === Tag Box Animation === */
 .tag-box {
   display: inline-block;
@@ -208,74 +186,61 @@ nav a:hover {
   padding-left: 1.5rem;
 }
 
-/* === Responsive === */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .buttons {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
+/* === About Section === */
 #about p {
   line-height: 1.7;
   color: #ddd;
   font-size: 1.05rem;
   margin-bottom: 1.2rem;
 }
+
 #about a {
   color: #a46bff;
   text-decoration: none;
 }
+
 #about a:hover {
   text-decoration: underline;
 }
 
-
+/* === Research & Achievements Grid === */
 .research-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
+
 .research-grid article {
   background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .research-grid article:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(162, 107, 255, 0.25);
 }
+
 .research-grid img {
   width: 100%;
   border-radius: 10px;
   margin-bottom: 1rem;
 }
+
 .research-grid h3 {
   color: #fff;
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
+
 .research-grid p {
   color: #ccc;
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
 .btn-secondary {
   display: inline-block;
   margin-top: 0.6rem;
@@ -286,60 +251,13 @@ nav a:hover {
   text-decoration: none;
   transition: 0.3s;
 }
+
 .btn-secondary:hover {
   background: #a26bff;
   color: #fff;
 }
 
-/* === Achievements Section Specific === */
-
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-.research-grid article {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 14px;
-  padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.research-grid article:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 28px rgba(162, 107, 255, 0.25);
-}
-.research-grid img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-.research-grid h3 {
-  color: #fff;
-  font-size: 1.1rem;
-  margin-bottom: 0.4rem;
-}
-.research-grid p {
-  color: #ccc;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-.btn-secondary {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.9rem;
-  border: 1px solid #a26bff;
-  border-radius: 6px;
-  color: #a26bff;
-  text-decoration: none;
-  transition: 0.3s;
-}
-.btn-secondary:hover {
-  background: #a26bff;
-  color: #fff;
-}
-
-
+/* === Timeline (Academics & Experience) === */
 blockquote {
   font-style: italic;
   color: #ccc;
@@ -348,11 +266,14 @@ blockquote {
   padding-left: 1rem;
 }
 
-.academic-banner {
+.academic-banner,
+.experience-banner {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
-.academic-banner img {
+
+.academic-banner img,
+.experience-banner img {
   max-width: 500px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(162, 107, 255, 0.2);
@@ -364,11 +285,13 @@ blockquote {
   gap: 1.8rem;
   margin-top: 2rem;
 }
+
 .timeline-item {
   position: relative;
   padding-left: 1.5rem;
   border-left: 2px solid #a26bff;
 }
+
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -379,76 +302,23 @@ blockquote {
   background: #a26bff;
   border-radius: 50%;
 }
+
 .timeline-item h3 {
   color: #fff;
   margin-bottom: 0.3rem;
 }
-.timeline-item h4 {
-  color: #a26bff;
-  margin-bottom: 0.5rem;
-}
-.timeline-item p {
-  color: #ddd;
-  line-height: 1.6;
-}
 
-/* Experience section */
-
-.experience-banner {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.experience-banner img {
-  max-width: 500px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(162, 107, 255, 0.25);
-}
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-  margin-top: 2rem;
-}
-.timeline-item {
-  position: relative;
-  padding-left: 1.5rem;
-  border-left: 2px solid #a26bff;
-}
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -7px;
-  top: 8px;
-  width: 12px;
-  height: 12px;
-  background: #a26bff;
-  border-radius: 50%;
-}
-.timeline-item h3 {
-  color: #fff;
-  margin-bottom: 0.3rem;
-}
 .timeline-item h4 {
   color: #a26bff;
   margin-bottom: 0.4rem;
 }
+
 .timeline-item p {
   color: #ddd;
   line-height: 1.6;
 }
 
-blockquote {
-  font-style: italic;
-  color: #ccc;
-  margin: 1.5rem 0;
-  border-left: 4px solid #a26bff;
-  padding-left: 1rem;
-}
-
-
-/* Contact Section */
-
+/* === Contact Section === */
 #contact {
   text-align: center;
   padding: 3rem 1rem;
@@ -492,31 +362,29 @@ blockquote {
   color: #fff;
 }
 
+/* === Clean Icon Links (LinkedIn, GitHub, X) === */
 .contact-links {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.contact-btn {
-  display: flex;
+  justify-content: left;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid #a26bff;
-  border-radius: 6px;
-  color: #a26bff;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.contact-links a {
   text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
 }
 
-.contact-btn:hover {
-  background: #a26bff;
-  color: #fff;
+.contact-links i {
+  font-size: 2rem;
+  color: #a26bff;
+  transition: color 0.3s, transform 0.2s;
 }
 
+.contact-links i:hover {
+  color: #919c9c;
+  transform: scale(1.2);
+}
 
 /* === Puzzle Modal === */
 .puzzle-modal {
@@ -563,43 +431,24 @@ blockquote {
   margin-top: 10px;
 }
 
-.contact-links {
-  display: flex;
-  justify-content: left;
-  gap: 1rem;
-  margin-top: 1rem;
+/* === Responsive === */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
 }
 
-.contact-btn i {
-  font-size: 5rem;
-  color: #a26bff;
-  transition: color 0.3s;
-}
-
-.contact-btn i:hover {
-  color: #00f6ff;
-}
-
-/* === Clean Icon Links === */
-.contact-links {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.contact-links a {
-  text-decoration: none;
-}
-
-.contact-links i {
-  font-size: 2rem;
-  color: #a26bff;
-  transition: color 0.3s, transform 0.2s;
-}
-
-.contact-links i:hover {
-  color: #919c9c;
-  transform: scale(1.2);
+/* === Smooth Scroll Offset === */
+:target {
+  scroll-margin-top: 100px;
 }
