@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="static/cute-robot-companion-glb/augmented-reality.png">
   <link rel="apple-touch-icon" href="static/cute-robot-companion-glb/augmented-reality.png">
 
+  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -17,14 +18,15 @@
   <link rel="stylesheet" href="style.css" />
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
+
 <body>
-  <!-- Background with gradient and blur -->
+  <!-- Background -->
   <div class="background">
     <img class="image-gradient" src="gradient.png" alt="gradient background" />
     <div class="layer-blur"></div>
   </div>
 
-  <!-- Main content -->
+  <!-- Header -->
   <div class="container">
     <header>
       <h1 class="logo">MJM Sunny</h1>
@@ -37,9 +39,10 @@
         <a href="#achievements">Achievements</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a href="#" class="btn-primary">Play Game</a>
+      <a href="#" class="btn-primary" id="playGame">Play Game</a>
     </header>
 
+    <!-- 🧠 Home Section (Always visible) -->
     <main id="home">
       <section class="hero">
         <div class="hero-text">
@@ -53,28 +56,20 @@
             Data Scientist
           </h1>
           <p class="description">
-            Passionate about immersive experiences, computer vision, and data-driven
-            interaction. Exploring the bridge between human cognition and virtual worlds.
+            Passionate about immersive experiences, computer vision, and data-driven interaction.
+            Exploring the bridge between human cognition and virtual worlds.
           </p>
 
           <div class="contact-links">
-            <a href="https://www.linkedin.com/in/jahed-murad-sunny/" target="_blank">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/juvenileSunny" target="_blank">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://twitter.com/JahedSunny" target="_blank">
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/jahed-murad-sunny/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/juvenileSunny" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://twitter.com/JahedSunny" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
           </div>
-
-
         </div>
 
-        <!-- Interactive 3D Model -->
         <div class="hero-model">
           <model-viewer
+            id="viewer"
             src="static/cute-robot-companion-glb/source/cuterobot_draco.glb"
             alt="3D Robot"
             auto-rotate
@@ -87,419 +82,27 @@
         </div>
       </section>
 
-      <section id="about" class="section">
-        <h2>About Me</h2>
-        <p>
-          My academic and professional journey has been guided by a deep fascination with technology, human–computer interaction, and data-driven design. I began as an Electrical Engineer at the 
-          <a href="https://www.cuet.ac.bd/" target="_blank">Chittagong University of Engineering and Technology (CUET)</a>, where curiosity about circuits and systems evolved into a lasting passion for computational innovation.
-        </p>
-
-        <p>
-          After graduation, I joined <a href="https://waltonbd.com/" target="_blank">Walton Digi-Tech Industries Limited</a> as a Quality Control Engineer in the Cellphone Quality Assurance Team. Over eighteen months, I refined my skills in product validation, cross-functional collaboration, and process optimization. That experience revealed the power of integrating hardware precision with intelligent, data-centric software systems.
-        </p>
-
-        <p>
-          Today, I am a researcher and VR developer specializing in <strong>Virtual Reality (VR)</strong>, <strong>Human-Computer Interaction (HCI)</strong>, and <strong>Data Science</strong>. My work focuses on how immersive technologies can enhance accessibility, precision, and user adaptation through empirical measurement and real-time analytics. Using tools such as Unity, Python, and machine-learning frameworks, I study motion precision, cognitive load, and usability in immersive environments.
-        </p>
-
-        <p>
-          I am currently pursuing my <strong>Master of Science in Computer Science</strong> at the 
-          <a href="https://ualr.edu/" target="_blank">University of Arkansas at Little Rock</a>, where I also completed a <strong>Graduate Certificate in Data Science</strong>. My research bridges immersive technology, behavioral analytics, and system design—advancing data-driven understanding of user performance in VR.
-        </p>
-
-        <p>
-          Ultimately, my goal is to design adaptive, inclusive, and intelligent virtual environments that empower users to interact seamlessly with technology—turning complexity into intuitive experience.
-        </p>
-      </section>
-
-
-      <section id="research" class="section">
-        <h2>Research & Publications</h2>
-
-        <p>
-          My research spans <strong>Virtual Reality (VR)</strong>, <strong>Human–Computer Interaction (HCI)</strong>, and <strong>Data Science</strong> — exploring how immersive environments can enhance human performance, accessibility, and privacy. 
-          My work bridges empirical behavioral studies with data-driven analytics, integrating real-time motion tracking, gaze modeling, and privacy-preserving computation. 
-          Below are some highlights of my recent projects and publications.
-        </p>
-
-        <div class="research-grid">
-          <article>
-            <img src="images/end_start_indication.png" alt="Evaluating Adjustment and Proficiency Disparities in VR">
-            <h3>Evaluating Adjustment and Proficiency Disparities in Virtual Reality</h3>
-            <p><em>IEEE VR 2025 — Poster Paper</em></p>
-            <p>
-              Examines how VR and gaming expertise affect user accuracy and cognitive load in precision-based tasks. 
-              Findings reveal that users proficient in both domains demonstrate higher efficiency and reduced workload, supporting the design of adaptive VR training systems.
-            </p>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=RsZWrjEAAAAJ&citation_for_view=RsZWrjEAAAAJ:UeHWp8X0CEIC" target="_blank" class="btn-secondary">View Publication</a>
-          </article>
-
-          <article>
-            <img src="images/eye_gaze.png" alt="Gaze Insights in XR">
-            <h3>Gaze Insights in XR: Real-Time Eye-Tracking Analytics with Elasticsearch</h3>
-            <p><em>GEMINI Workshop, IEEE VR 2025</em></p>
-            <p>
-              Introduces a scalable framework using the Elastic Stack for real-time gaze analytics in VR. 
-              The system supports interactive heatmaps and replay analysis in Unity while implementing privacy-preserving mechanisms for secure gaze data management.
-            </p>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=RsZWrjEAAAAJ&citation_for_view=RsZWrjEAAAAJ:qjMakFHDy7sC" target="_blank" class="btn-secondary">View Publication</a>
-          </article>
-
-          <article>
-            <img src="images/maze_paper.png" alt="Spatial Decision Making in Immersive VR">
-            <h3>Non-Linear Parameterization of Spatial Decision Making in Immersive VR</h3>
-            <p><em>IEEE VR 2024, Orlando</em></p>
-            <p>
-              Explores how spatial decision-making and motor proficiency vary between expert and novice VR users. 
-              Using maze-based environments and neural network explainability (SHAP), the study identifies key performance determinants shaping user adaptation in immersive spaces.
-            </p>
-            <a href="https://ieeexplore.ieee.org/document/10536473" target="_blank" class="btn-secondary">View Paper</a>
-          </article>
-
-          <article>
-            <img src="images/teaser.png" alt="Privacy Concerns in Spatial Navigability">
-            <h3>Privacy Concerns from Variances in Spatial Navigability in VR</h3>
-            <p><em>Invited Talk, IEEE VR 2023 — Shanghai</em></p>
-            <p>
-              Investigates how spatial navigation patterns in VR may expose sensitive behavioral traits. 
-              Proposes privacy-aware machine learning frameworks for VR and AR platforms to mitigate user profiling and inference risks.
-            </p>
-            <a href="https://arxiv.org/pdf/2302.02525" target="_blank" class="btn-secondary">Read Abstract</a>
-          </article>
-
-          <article>
-            <img src="images/bhashanchar.png" alt="Bhashan Char Renewable Energy Project">
-            <h3>Affordable Electricity for Bhashan Char from Renewable Energy</h3>
-            <p><em>IEEE ECCE 2019, Dhaka</em></p>
-            <p>
-              Designed a hybrid renewable energy system using HOMER software to supply sustainable power to Bhashan Char, 
-              an offshore settlement for displaced communities. Proposed system cost: 8.9 BDT/kWh.
-            </p>
-            <a href="https://ieeexplore.ieee.org/document/8679484" target="_blank" class="btn-secondary">View Paper</a>
-          </article>
-
-          <article>
-            <img src="images/lms.png" alt="Library Management System">
-            <h3>Library Management System</h3>
-            <p><em>Academic Project</em></p>
-            <p>
-              Developed a hierarchical desktop application integrated with an SQL database to manage library operations efficiently. 
-              Strengthened programming and database management expertise.
-            </p>
-            <a href="https://github.com/juvenileSunny/LibraryManagementSystem" target="_blank" class="btn-secondary">View Code</a>
-          </article>
-
-          <article>
-            <img src="images/book_physics.png" alt="Shoishob Koishore Podartho Bigganer Shuchona">
-            <h3>Shoishob Koishore Podartho Bigganer Shuchona</h3>
-            <p><em>Educational Book Publication</em></p>
-            <p>
-              Authored the section on <strong>Force</strong> in a physics book designed to make science engaging for secondary students in Bangladesh. 
-              Emphasizes conceptual clarity and curiosity-driven learning.
-            </p>
-            <a href="https://www.rokomari.com/book/author/47474/md-jahed-murad-sunny" target="_blank" class="btn-secondary">View Book</a>
-          </article>
-
-          <article>
-            <img src="images/robot_cuet.png" alt="Humanitarian Demining Robotics Competition">
-            <h3>International Outdoor Robotics Competition on Humanitarian Demining</h3>
-            <p><em>IIUM, Malaysia — 2018</em></p>
-            <p>
-              Participated in the first international outdoor robotics competition on humanitarian demining, 
-              gaining hands-on experience with sensor-based navigation and team-based technical problem-solving.
-            </p>
-            <a href="https://www.youtube.com/watch?v=6KEIdI9ZEfY" target="_blank" class="btn-secondary">Watch</a>
-          </article>
-        </div>
-      </section>
-
-
-      <section id="academics" class="section">
-        <h2>Academic Journey</h2>
-        <blockquote>
-          <strong>“True wisdom is knowing what you do not know.”</strong> — Socrates
-        </blockquote>
-
-        <div class="academic-banner">
-          <img src="images/sunny_grad_img.png" alt="Graduation Image of Sunny" />
-        </div>
-
-        <p>
-          I began my academic journey with a passion for engineering and innovation that led me from the foundations of electrical engineering to the forefront of virtual reality and data science. Each phase of my education strengthened my analytical, creative, and research capabilities.
-        </p>
-
-        <div class="timeline">
-          <!-- Graduate Studies -->
-          <div class="timeline-item">
-            <h3>Master of Science in Computer Science</h3>
-            <h4><a href="https://ualr.edu/" target="_blank">University of Arkansas at Little Rock</a> (2023–Present)</h4>
-            <p>
-              Pursuing advanced research in computer science with emphasis on Virtual Reality, Human–Computer Interaction, and Data Science. This program deepens my understanding of algorithms, immersive design, and data-driven system development. I have also completed a Graduate Certificate in Data Science, which provided a strong foundation in analytics, visualization, and real-world data modeling.
-            </p>
-          </div>
-
-          <!-- Undergraduate -->
-          <div class="timeline-item">
-            <h3>Bachelor of Science in Electrical and Electronic Engineering</h3>
-            <h4><a href="https://www.cuet.ac.bd/" target="_blank">Chittagong University of Engineering and Technology (CUET)</a></h4>
-            <p>
-              My undergraduate years at CUET were driven by a singular dream—to become an engineer. During this period, I cultivated a deep interest in circuits, embedded systems, and computational design. These formative years transformed my fascination with technology into a lifelong commitment to innovation and research.
-            </p>
-          </div>
-
-          <!-- High School -->
-          <div class="timeline-item">
-            <h3>Higher Secondary Education</h3>
-            <h4><a href="https://ctgcollege.gov.bd/" target="_blank">Chittagong College</a></h4>
-            <p>
-              Completed my Higher Secondary School Certificate (HSC) with distinction, achieving a GPA of 5.00. My focus on physics, mathematics, and computer studies provided a solid foundation for engineering education and inspired my scientific curiosity.
-            </p>
-          </div>
-
-          <!-- Secondary -->
-          <div class="timeline-item">
-            <h3>Secondary School Certificate (SSC)</h3>
-            <h4><a href="https://ctgcs.edu.bd/" target="_blank">Chittagong Collegiate School and College</a></h4>
-            <p>
-              Achieved GPA 5.00 and received a government scholarship from the Science Group. This milestone marked the beginning of my commitment to academic excellence and established the groundwork for my future engineering studies.
-            </p>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="experience" class="section">
-        <h2>Professional Journey</h2>
-        <blockquote>
-          <strong>“When something is important enough, you do it even if the odds are not in your favor.”</strong> — Elon Musk
-        </blockquote>
-
-        <div class="experience-banner">
-          <img src="images/iso_sunny.png" alt="Sunny Professional Image" />
-        </div>
-
-        <p>
-          Before becoming a Graduate Research Assistant at the <a href="https://eac-ualr.org/" target="_blank">Emerging Analytics Center (EAC)</a> at the <a href="https://ualr.edu/" target="_blank">University of Arkansas at Little Rock (UALR)</a>, my professional path was defined by leadership, operational, and technical roles across both academia and industry. Each experience has shaped my expertise in management, engineering, and applied research.
-        </p>
-
-        <div class="timeline">
-          <!-- Current -->
-          <div class="timeline-item">
-            <h3>Graduate Research Assistant</h3>
-            <h4><a href="https://eac-ualr.org/" target="_blank">Emerging Analytics Center (EAC)</a>, University of Arkansas at Little Rock (Jan 2023 – Present)</h4>
-            <p>
-              Conducting interdisciplinary research in Virtual Reality (VR), immersive visualization, and machine learning. My work focuses on usability analytics, spatial decision-making, and gaze-based interaction design in XR. The EAC is a hub for innovation in immersive visualization, cybersecurity, IoT, and AI-driven applications, where I contribute to both technical and usability-focused research.
-            </p>
-          </div>
-
-          <!-- Walton -->
-          <div class="timeline-item">
-            <h3>Assistant Director, Cellphone Quality Control Department</h3>
-            <h4><a href="https://waltonbd.com/" target="_blank">Walton Digi-Tech Industries Limited, Bangladesh</a> (Nov 2020 – Apr 2022)</h4>
-            <p>
-              Supervised production and quality control operations in Walton’s mobile manufacturing division. Led teams ensuring process efficiency, ISO compliance, and adherence to safety standards. Collaborated with R&D and supply chain units to reduce defects, optimize workflows, and uphold product quality through Lean and Six Sigma methodologies.
-            </p>
-          </div>
-
-          <!-- Bashir Ahmed -->
-          <div class="timeline-item">
-            <h3>Assistant Supervisor of Operations</h3>
-            <h4>Bashir Ahmed Co. Ltd. (Jun 2019 – Jun 2020)</h4>
-            <p>
-              Managed cargo operations and customs documentation while coordinating logistics teams for efficient shipment handling. Improved workflows by implementing compliance-driven strategies, strengthening the company’s operational performance and supply chain integrity.
-            </p>
-          </div>
-
-          <!-- IEEE Bangladesh -->
-          <div class="timeline-item">
-            <h3>Content Writer</h3>
-            <h4>Professional Activities Committee, IEEE Bangladesh (2018)</h4>
-            <p>
-              Authored and presented technical news and analytical summaries on advancements in engineering and technology for IEEE Bangladesh’s outreach publications. Developed accessible and engaging content that highlighted emerging innovations and contributed to public technical literacy.
-            </p>
-          </div>
-
-          <!-- Chittagong Students Forum -->
-          <div class="timeline-item">
-            <h3>Co-founder & General Secretary</h3>
-            <h4>Chittagong Students Forum, CUET (2018)</h4>
-            <p>
-              Established a cultural and academic platform to promote collaboration and community among students from the Chittagong region. Oversaw event organization, coordination, and community engagement initiatives that strengthened cultural representation on campus.
-            </p>
-          </div>
-
-          <!-- IEEE Student Branch -->
-          <div class="timeline-item">
-            <h3>General Secretary</h3>
-            <h4>IEEE Student Branch, CUET (Sep 2017 – Sep 2018)</h4>
-            <p>
-              Led and coordinated events such as Maker Fest, Biomedical Engineering Poster Competition, and IoT & PCB Design Workshops. Oversaw branch logistics, membership, and communication with IEEE HQ, cultivating technical learning and innovation among student engineers.
-            </p>
-          </div>
-        </div>
-      </section>
-
-
-
-
-      <section id="achievements" class="section">
-        <h2>Achievements & Certifications</h2>
-
-        <div class="research-grid">
-          <article>
-            <img src="images/Unity3D.png" alt="Complete C# Unity Game Developer 3D">
-            <h3>Complete C# Unity Game Developer 3D</h3>
-            <p>Comprehensive course on Unity and C# programming for 3D games — covering coding principles, mechanics, and gameplay design. Strengthened my VR development expertise.</p>
-          </article>
-
-          <article>
-            <img src="images/elk_masterclass.jpg" alt="Elasticsearch Masterclass">
-            <h3>Elasticsearch Masterclass with Logstash and Kibana</h3>
-            <p>Hands-on training in managing, analyzing, and visualizing large-scale data with the ELK stack — applied for real-time analytics and data visualization in VR research.</p>
-          </article>
-
-          <article>
-            <img src="images/DL_AI.jpg" alt="Deep Learning A-Z">
-            <h3>Deep Learning A–Z™: Hands-On Artificial Neural Networks</h3>
-            <p>Built and deployed neural networks for real-world AI applications, gaining practical insight into deep learning architectures and optimization strategies.</p>
-          </article>
-
-          <article>
-            <img src="images/DLwithPython.jpg" alt="Machine Learning and Deep Learning with Python">
-            <h3>Machine Learning, Data Science & Deep Learning with Python</h3>
-            <p>Advanced coursework on supervised/unsupervised learning and predictive analytics using Python, reinforcing data-driven approaches in immersive analytics.</p>
-          </article>
-
-          <article>
-            <img src="images/NNandDL.jpg" alt="Neural Networks and Deep Learning">
-            <h3>Neural Networks and Deep Learning — DeepLearning.AI</h3>
-            <p>In-depth understanding of backpropagation, activation functions, and regularization, improving my capacity to integrate ML into behavioral modeling in VR.</p>
-          </article>
-
-          <article>
-            <img src="images/GettingStartedwithDeepLearning.jpg" alt="Getting Started with Deep Learning">
-            <h3>Getting Started with Deep Learning — NVIDIA</h3>
-            <p>Introductory yet hands-on NVIDIA course covering deep learning frameworks and real-world deployment practices.</p>
-          </article>
-
-          <article>
-            <img src="images/GitSmart.jpg" alt="Get Git Smart Course">
-            <h3>Get Git Smart: Learn Git in Unity, SourceTree, GitHub</h3>
-            <p>Practical version control training integrating Unity projects with Git and SourceTree, streamlining collaborative development workflows.</p>
-          </article>
-
-          <article>
-            <img src="images/IntroToPythonDS.jpg" alt="Introduction to Data Science in Python">
-            <h3>Introduction to Data Science in Python — University of Michigan</h3>
-            <p>Covered data wrangling, statistical modeling, and visualization — forming the basis for my data-centric research in immersive technologies.</p>
-          </article>
-        </div>
-      </section>
-
-
-      <section id="contact" class="section">
-        <h2>Get in Touch</h2>
-        <p>
-          I’m always happy to connect with fellow researchers, developers, and innovators.  
-          Whether you’d like to discuss collaboration opportunities, VR usability research, or just exchange ideas—feel free to reach out!
-        </p>
-
-        <div class="contact-info">
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <span><a href="mailto:msunny@ualr.edu">msunny@ualr.edu</a></span>
-          </div>
-
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <span>(540) 558-5283</span>
-          </div>
-
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Little Rock, Arkansas – 72204</span>
-          </div>
-        </div>
-
-          <div class="contact-links">
-            <a href="https://www.linkedin.com/in/jahed-murad-sunny/" target="_blank">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/juvenileSunny" target="_blank">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://twitter.com/JahedSunny" target="_blank">
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
-          </div>
-      </section>
-
+      <!-- Placeholder for loaded sections -->
+      <div id="content"></div>
     </main>
   </div>
 
-  <!-- === Interactive 3D Model Script === -->
-  <script>
-    const model = document.querySelector('model-viewer');
-
-    // Smooth orbit and lighting values
-    let targetOrbitY = 180, targetOrbitX = 75;
-    let currentOrbitY = 180, currentOrbitX = 75;
-    let targetLightX = 0, targetLightY = 0;
-    let currentLightX = 0, currentLightY = 0;
-
-    // Mouse movement listener
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      targetOrbitY = 180 + x * 30;
-      targetOrbitX = 75 + y * 15;
-      targetLightX = x * 60;
-      targetLightY = y * 40;
-    });
-
-    // Reset to neutral when leaving window
-    document.addEventListener('mouseleave', () => {
-      targetOrbitY = 180;
-      targetOrbitX = 75;
-      targetLightX = 0;
-      targetLightY = 0;
-    });
-
-    // Smooth animation loop
-    function animate() {
-      currentOrbitY += (targetOrbitY - currentOrbitY) * 0.1;
-      currentOrbitX += (targetOrbitX - currentOrbitX) * 0.1;
-      currentLightX += (targetLightX - currentLightX) * 0.1;
-      currentLightY += (targetLightY - currentLightY) * 0.1;
-
-      model.cameraOrbit = `${currentOrbitY}deg ${currentOrbitX}deg auto`;
-      model.style.filter = `drop-shadow(${currentLightX * 0.3}px ${currentLightY * 0.3}px 25px rgba(162,107,255,0.4))`;
-
-      requestAnimationFrame(animate);
-    }
-
-    model.environmentImage = "neutral";
-    model.shadowIntensity = 1;
-    model.exposure = 1.1;
-
-    animate();
-  </script>
-
-    <!-- === Iron Man Puzzle Game Popup === -->
-    <div id="puzzleModal" class="puzzle-modal">
-      <div class="puzzle-content">
-        <span id="closePuzzle" class="close">&times;</span>
-        <h2>Iron Man Puzzle Game</h2>
-        <canvas id="puzzleCanvas" width="420" height="418"></canvas>
-        <p id="moves">Moves: 0</p>
-      </div>
+  <!-- Puzzle Modal -->
+  <div id="puzzleModal" class="puzzle-modal">
+    <div class="puzzle-content">
+      <span id="closePuzzle" class="close">&times;</span>
+      <h2>Iron Man Puzzle Game</h2>
+      <canvas id="puzzleCanvas" width="420" height="418"></canvas>
+      <p id="moves">Moves: 0</p>
     </div>
+  </div>
 
-    <script src="scripts/model-viewer.js"></script>
-    <script src="scripts/puzzle-game.js"></script>
-    <script src="scripts/header-effects.js"></script>
-    <script src="scripts/smooth-scroll.js"></script>
-    <script src="scripts/main.js"></script>
-
+  <!-- Scripts -->
+  <script src="scripts/model-viewer.js"></script>
+  <script src="scripts/puzzle-game.js"></script>
+  <script src="scripts/header-effects.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
+
+

@@ -1,11 +1,15 @@
-// scripts/smooth-scroll.js
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (!target) return;
-    const headerOffset = 90;
-    const offset = target.offsetTop - headerOffset;
-    window.scrollTo({ top: offset, behavior: "smooth" });
+  anchor.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href").substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    // only scroll if element exists (home, hero, etc.)
+    if (targetElement) {
+      e.preventDefault();
+      window.scrollTo({
+        top: targetElement.offsetTop - 60, // adjust for fixed navbar
+        behavior: "smooth"
+      });
+    }
   });
 });
