@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MJM Sunny</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="static/cute-robot-companion-glb/augmented-reality.png">
+
+  <link rel="icon" type="image/png" href="static/cute-robot-companion-glb/augmented-reality.png">
   <link rel="apple-touch-icon" href="static/cute-robot-companion-glb/augmented-reality.png">
+
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -493,174 +495,11 @@
       </div>
     </div>
 
-    <script>
-      // === Puzzle Modal ===
-      const playButton = document.querySelector('.btn-primary');
-      const modal = document.getElementById('puzzleModal');
-      const closeBtn = document.getElementById('closePuzzle');
-
-      playButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal.style.display = 'flex';
-        initPuzzle();
-      });
-
-      closeBtn.addEventListener('click', () => modal.style.display = 'none');
-      window.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
-      });
-
-      // === Puzzle Game Logic ===
-      const canvas = document.getElementById("puzzleCanvas");
-      const ctx = canvas.getContext("2d");
-      const movesText = document.getElementById("moves");
-
-      const img = new Image();
-      img.src = "static/ironman.png"; // 🦾 Replace with your Iron Man image path
-      const size = 3; // 3x3 puzzle
-      const tileSize = canvas.width / size;
-      let tiles = [];
-      let empty = { x: size - 1, y: size - 1 };
-      let moves = 0;
-
-      function initPuzzle() {
-        moves = 0;
-        movesText.textContent = "Moves: 0";
-        tiles = [];
-
-        // Create an ordered grid of tiles
-        for (let y = 0; y < size; y++) {
-          for (let x = 0; x < size; x++) {
-            tiles.push({ x, y });
-          }
-        }
-
-        // Remove last tile (empty space)
-        tiles.pop();
-        empty = { x: size - 1, y: size - 1 };
-
-        // Shuffle validly (swap tiles randomly)
-        for (let i = tiles.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-        }
-
-        drawPuzzle();
-      }
-
-
-      function drawPuzzle() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw all tiles based on their positions
-        let index = 0;
-        for (let row = 0; row < size; row++) {
-          for (let col = 0; col < size; col++) {
-            const isEmpty = empty.x === col && empty.y === row;
-            if (isEmpty) continue; // skip empty
-
-            const tile = tiles[index];
-            ctx.drawImage(
-              img,
-              tile.x * tileSize,
-              tile.y * tileSize,
-              tileSize,
-              tileSize,
-              col * tileSize,
-              row * tileSize,
-              tileSize,
-              tileSize
-            );
-            index++;
-          }
-        }
-      }
-
-      canvas.addEventListener("click", (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = Math.floor((e.clientX - rect.left) / tileSize);
-        const y = Math.floor((e.clientY - rect.top) / tileSize);
-        moveTile(x, y);
-      });
-
-      function moveTile(col, row) {
-        const dx = col - empty.x;
-        const dy = row - empty.y;
-
-        if (Math.abs(dx) + Math.abs(dy) === 1) {
-          // Get tile index at this position
-          const tileIndex = (row * size + col);
-          const flatTiles = [];
-          let index = 0;
-          for (let r = 0; r < size; r++) {
-            for (let c = 0; c < size; c++) {
-              if (r === empty.y && c === empty.x) {
-                flatTiles.push(null);
-              } else {
-                flatTiles.push(tiles[index++]);
-              }
-            }
-          }
-
-          // swap with empty
-          const temp = flatTiles[row * size + col];
-          flatTiles[empty.y * size + empty.x] = temp;
-          flatTiles[row * size + col] = null;
-
-          // rebuild tiles array (ignore empty)
-          tiles = flatTiles.filter((t) => t !== null);
-
-          empty = { x: col, y: row };
-          moves++;
-          movesText.textContent = "Moves: " + moves;
-          drawPuzzle();
-          if (isSolved()) {
-            setTimeout(() => alert(`🎉 Puzzle Solved in ${moves} moves!`), 100);
-          }
-
-        }
-
-        function isSolved() {
-          return tiles.every((tile, i) => tile.x === i % size && tile.y === Math.floor(i / size));
-        }
-
-      }
-
-
-      img.onload = () => drawPuzzle();
-      img.onload = () => initPuzzle();
-    </script>
-
-    <script>
-      // Add shadow when scrolling
-      window.addEventListener("scroll", () => {
-        const header = document.querySelector("header");
-        if (window.scrollY > 50) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
-    </script>
-
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          const headerOffset = 90; // height of fixed header
-          const elementPosition = target.offsetTop;
-          const offsetPosition = elementPosition - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
-        });
-      });
-    </script>
-
-
+    <script src="scripts/model-viewer.js"></script>
+    <script src="scripts/puzzle-game.js"></script>
+    <script src="scripts/header-effects.js"></script>
+    <script src="scripts/smooth-scroll.js"></script>
+    <script src="scripts/main.js"></script>
 
 </body>
 </html>
