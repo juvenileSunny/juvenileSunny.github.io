@@ -40,13 +40,34 @@ body {
 }
 
 /* === Header === */
+/* === Fixed Header === */
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 1rem 5%;
   font-weight: 500;
+  transition: background 0.3s ease;
 }
+
+header.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Prevent page content from hiding under the fixed header */
+body {
+  padding-top: 90px;
+}
+
 
 .logo {
   font-size: 1.5rem;
@@ -540,4 +561,45 @@ blockquote {
 #moves {
   color: #ccc;
   margin-top: 10px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-btn i {
+  font-size: 5rem;
+  color: #a26bff;
+  transition: color 0.3s;
+}
+
+.contact-btn i:hover {
+  color: #00f6ff;
+}
+
+/* === Clean Icon Links === */
+.contact-links {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.contact-links a {
+  text-decoration: none;
+}
+
+.contact-links i {
+  font-size: 2rem;
+  color: #a26bff;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.contact-links i:hover {
+  color: #919c9c;
+  transform: scale(1.2);
 }
