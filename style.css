@@ -1088,3 +1088,69 @@ blockquote {
 :target {
   scroll-margin-top: 110px;
 }
+/* =========================================================
+   FIX HOME / PLAY GAME BUTTON OVERFLOW
+   ========================================================= */
+
+#home {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#content {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Prevent buttons/links from exceeding their container */
+#home .btn-primary,
+#home .btn-secondary,
+#home button {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Hero buttons container */
+.hero .actions,
+.hero .buttons,
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+
+  #home {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .hero {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-text,
+  .hero-model {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero .actions,
+  .hero .buttons,
+  .hero-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero .btn-primary,
+  .hero .btn-secondary {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+}
