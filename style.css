@@ -1,4 +1,8 @@
-/* === Global === */
+```css
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -14,10 +18,14 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #f5f5f5;
   overflow-x: hidden;
-  padding-top: 90px; /* prevent content hiding under header */
+  padding-top: 90px;
 }
 
-/* === Background === */
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
 .background {
   position: fixed;
   inset: 0;
@@ -37,28 +45,43 @@ body {
   backdrop-filter: blur(30px);
 }
 
-/* === Container === */
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
 .container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
 }
 
-/* === Header (Fixed Navbar) === */
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(10px);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 1rem 5%;
+
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
+
   font-weight: 500;
-  transition: background 0.3s ease;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 header.scrolled {
@@ -74,8 +97,10 @@ header.scrolled {
 nav a {
   color: #b0b0b0;
   margin: 0 1rem;
+
   text-decoration: none;
   font-size: 0.95rem;
+
   transition: color 0.3s ease;
 }
 
@@ -83,25 +108,45 @@ nav a:hover {
   color: #00f6ff;
 }
 
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .btn-primary {
+  display: inline-block;
+
   background: linear-gradient(90deg, #a26bff, #00f6ff);
+
   color: #fff;
+
   padding: 0.6rem 1.2rem;
+
   border-radius: 30px;
+
   text-decoration: none;
-  transition: 0.3s;
+
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .btn-primary:hover {
   box-shadow: 0 0 15px #a26bff;
+  transform: translateY(-2px);
 }
 
-/* === Hero Section === */
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
 .hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+
   margin-top: 3rem;
 }
 
@@ -112,90 +157,147 @@ nav a:hover {
 
 .hero-model {
   flex: 1;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+
   min-width: 300px;
+
+  perspective: 1000px;
 }
 
 .hero-model model-viewer {
-  transition: filter 0.3s ease, transform 0.3s ease;
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+
   will-change: transform, filter;
 }
 
 .hero h1 {
   font-size: 3rem;
   line-height: 1.2;
+
   margin: 1rem 0;
 }
 
 .description {
   color: #b0b0b0;
+
   margin-bottom: 2rem;
+
   font-size: 1rem;
   line-height: 1.6;
 }
 
-/* === Tag Box Animation === */
+
+/* =========================================================
+   TAG BOX
+   ========================================================= */
+
 .tag-box {
   display: inline-block;
+
   padding: 2px;
+
   border-radius: 50px;
-  background: linear-gradient(90deg, #a26bff, #00f6ff, #a26bff);
+
+  background:
+    linear-gradient(
+      90deg,
+      #a26bff,
+      #00f6ff,
+      #a26bff
+    );
+
   background-size: 300%;
+
   animation: borderFlow 4s linear infinite;
-  box-shadow: 0 0 15px rgba(162, 107, 255, 0.6);
+
+  box-shadow:
+    0 0 15px rgba(162, 107, 255, 0.6);
 }
 
 .tag {
   background: rgba(0, 0, 0, 0.85);
+
   color: #fff;
+
   padding: 8px 20px;
+
   border-radius: 50px;
+
   font-size: 0.8rem;
+
   letter-spacing: 1px;
+
   text-transform: uppercase;
 }
 
 @keyframes borderFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* === Sections === */
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
 .section {
   margin: 4rem 0;
 }
 
 .section h2 {
   font-size: 1.8rem;
+
   margin-bottom: 1rem;
+
   color: #a26bff;
 }
 
 .section p,
 .section ul {
   color: #b0b0b0;
+
   line-height: 1.7;
 }
 
 .section ul {
   list-style: disc;
+
   padding-left: 1.5rem;
 }
 
-/* === About Section === */
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
 #about p {
   line-height: 1.7;
+
   color: #ddd;
+
   font-size: 1.05rem;
+
   margin-bottom: 1.2rem;
 }
 
 #about a {
   color: #a46bff;
+
   text-decoration: none;
 }
 
@@ -203,63 +305,262 @@ nav a:hover {
   text-decoration: underline;
 }
 
-```css
+
 /* =========================================================
-   RESEARCH & PUBLICATIONS — LIST LAYOUT
+   RESEARCH & PUBLICATIONS
    ========================================================= */
 
 .research-section {
   max-width: 1200px;
+
   margin: 0 auto;
+
   padding: 80px 30px;
 }
-```css
+
+
+/* ---------- Research Header ---------- */
+
+.research-header {
+  max-width: 900px;
+
+  margin-bottom: 55px;
+}
+
+.research-header h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+
+  margin-bottom: 20px;
+}
+
+.research-header p {
+  font-size: 1.05rem;
+
+  line-height: 1.8;
+
+  opacity: 0.85;
+}
+
+
+/* ---------- Research List ---------- */
+
+.research-list {
+  width: 100%;
+}
+
+
+/* ---------- Research Item ---------- */
+
+.research-item {
+  display: grid;
+
+  grid-template-columns: 230px 1fr;
+
+  gap: 35px;
+
+  align-items: center;
+
+  padding: 35px 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.research-item:first-child {
+  border-top:
+    1px solid rgba(255, 255, 255, 0.12);
+}
+
+.research-item:hover {
+  transform: translateX(8px);
+}
+
+
+/* ---------- Research Image ---------- */
+
+.research-image {
+  width: 100%;
+
+  height: 160px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #111;
+}
+
+.research-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.research-item:hover .research-image img {
+  transform: scale(1.04);
+}
+
+
+/* ---------- Research Content ---------- */
+
+.research-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+.research-type {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: #00d4ff;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.research-content h3 {
+  color: #fff;
+
+  margin: 0 0 8px;
+
+  font-size: 1.35rem;
+
+  line-height: 1.35;
+}
+
+.research-venue {
+  margin: 0 0 14px;
+
+  font-size: 0.92rem;
+
+  font-weight: 600;
+
+  opacity: 0.7;
+}
+
+.research-description {
+  max-width: 850px;
+
+  margin: 0 0 18px;
+
+  font-size: 0.95rem;
+
+  line-height: 1.7;
+
+  opacity: 0.82;
+}
+
+
+/* ---------- Research Link ---------- */
+
+.research-link {
+  display: inline-block;
+
+  margin-top: auto;
+
+  color: #00d4ff;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.research-link:hover {
+  color: #ffffff;
+
+  transform: translateX(4px);
+}
+
+
 /* =========================================================
    ACHIEVEMENTS & CERTIFICATIONS
    ========================================================= */
 
 .achievements-section {
   max-width: 1200px;
+
   margin: 0 auto;
+
   padding: 80px 30px;
 }
 
+
+/* ---------- Achievements Header ---------- */
+
 .achievements-header {
   max-width: 850px;
+
   margin-bottom: 45px;
 }
 
 .achievements-header h2 {
   margin-bottom: 18px;
+
   font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .achievements-header p {
   line-height: 1.8;
+
   opacity: 0.82;
 }
 
 
-/* List */
+/* ---------- Achievement List ---------- */
 
 .achievement-list {
   width: 100%;
 }
 
 
-/* Individual item */
+/* ---------- Achievement Item ---------- */
 
 .achievement-item {
   display: grid;
+
   grid-template-columns: 180px 1fr;
+
   gap: 30px;
+
   align-items: center;
 
   padding: 28px 0;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.12);
 
   transition: transform 0.3s ease;
+}
+
+.achievement-item:first-child {
+  border-top:
+    1px solid rgba(255, 255, 255, 0.12);
 }
 
 .achievement-item:hover {
@@ -267,16 +568,26 @@ nav a:hover {
 }
 
 
-/* Image */
+/* ---------- Achievement Image ---------- */
 
 .achievement-image {
   width: 100%;
+
   height: 120px;
 
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
   overflow: hidden;
+
+  padding: 6px;
+
   border-radius: 10px;
 
-  background: #111;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .achievement-image img {
@@ -284,17 +595,18 @@ nav a:hover {
   height: 100%;
 
   display: block;
-  object-fit: cover;
+
+  object-fit: contain;
 
   transition: transform 0.35s ease;
 }
 
 .achievement-item:hover .achievement-image img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 
-/* Content */
+/* ---------- Achievement Content ---------- */
 
 .achievement-content {
   min-width: 0;
@@ -308,16 +620,21 @@ nav a:hover {
   color: #00d4ff;
 
   font-size: 0.73rem;
+
   font-weight: 700;
 
   letter-spacing: 0.09em;
+
   text-transform: uppercase;
 }
 
 .achievement-content h3 {
+  color: #fff;
+
   margin: 0 0 10px;
 
   font-size: 1.2rem;
+
   line-height: 1.35;
 }
 
@@ -327,219 +644,291 @@ nav a:hover {
   margin: 0;
 
   font-size: 0.94rem;
+
   line-height: 1.65;
 
   opacity: 0.82;
 }
 
 
-/* Tablet */
+/* =========================================================
+   TIMELINE — ACADEMICS & EXPERIENCE
+   ========================================================= */
 
-@media screen and (max-width: 800px) {
+blockquote {
+  font-style: italic;
 
-  .achievement-item {
-    grid-template-columns: 145px 1fr;
-    gap: 22px;
-  }
+  color: #ccc;
 
-  .achievement-image {
-    height: 105px;
-  }
+  margin: 1.5rem 0;
+
+  border-left: 4px solid #a26bff;
+
+  padding-left: 1rem;
 }
 
+.academic-banner,
+.experience-banner {
+  text-align: center;
 
-/* Mobile */
-
-@media screen and (max-width: 600px) {
-
-  .achievements-section {
-    padding: 50px 20px;
-  }
-
-  .achievement-item {
-    grid-template-columns: 1fr;
-    gap: 15px;
-
-    padding: 25px 0;
-  }
-
-  .achievement-item:hover {
-    transform: none;
-  }
-
-  .achievement-image {
-    width: 100%;
-    height: 190px;
-  }
-
-  .achievement-content h3 {
-    font-size: 1.1rem;
-  }
-}
-```
-
-
-
-/* ---------- Section Header ---------- */
-
-.research-header {
-  max-width: 900px;
-  margin-bottom: 55px;
+  margin-bottom: 2rem;
 }
 
-.research-header h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  margin-bottom: 20px;
-}
-
-.research-header p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  opacity: 0.85;
-}
-
-
-/* ---------- List ---------- */
-
-.research-list {
+.academic-banner img,
+.experience-banner img {
   width: 100%;
+
+  max-width: 500px;
+
+  height: auto;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 10px 25px rgba(162, 107, 255, 0.2);
 }
 
-
-/* ---------- Individual Publication ---------- */
-
-.research-item {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  gap: 35px;
-
-  padding: 35px 0;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-}
-
-
-/* Optional subtle hover movement */
-
-.research-item:hover {
-  transform: translateX(8px);
-}
-
-
-/* ---------- Image ---------- */
-
-.research-image {
-  width: 100%;
-  height: 160px;
-
-  overflow: hidden;
-  border-radius: 10px;
-
-  background: #111;
-}
-
-.research-image img {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-  object-fit: cover;
-
-  transition: transform 0.4s ease;
-}
-
-.research-item:hover .research-image img {
-  transform: scale(1.04);
-}
-
-
-/* ---------- Content ---------- */
-
-.research-content {
+.timeline {
   display: flex;
+
   flex-direction: column;
-  align-items: flex-start;
+
+  gap: 1.8rem;
+
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  position: relative;
+
+  padding-left: 1.5rem;
+
+  border-left: 2px solid #a26bff;
+}
+
+.timeline-item::before {
+  content: "";
+
+  position: absolute;
+
+  left: -7px;
+
+  top: 8px;
+
+  width: 12px;
+
+  height: 12px;
+
+  background: #a26bff;
+
+  border-radius: 50%;
+}
+
+.timeline-item h3 {
+  color: #fff;
+
+  margin-bottom: 0.3rem;
+}
+
+.timeline-item h4 {
+  color: #a26bff;
+
+  margin-bottom: 0.4rem;
+}
+
+.timeline-item p {
+  color: #ddd;
+
+  line-height: 1.6;
 }
 
 
-/* Publication type / year */
+/* =========================================================
+   CONTACT
+   ========================================================= */
 
-.research-type {
-  display: inline-block;
+#contact {
+  text-align: center;
 
-  margin-bottom: 8px;
-
-  font-size: 0.75rem;
-  font-weight: 700;
-
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-
-  color: #00d4ff;
+  padding: 3rem 1rem;
 }
 
+#contact p {
+  color: #ddd;
 
-/* Title */
+  max-width: 700px;
 
-.research-content h3 {
-  margin: 0 0 8px;
+  margin: 0 auto 2rem;
 
-  font-size: 1.35rem;
-  line-height: 1.35;
+  line-height: 1.6;
 }
 
+.contact-info {
+  display: flex;
 
-/* Conference / venue */
+  flex-direction: column;
 
-.research-venue {
-  margin: 0 0 14px;
+  align-items: center;
 
-  font-size: 0.92rem;
-  font-weight: 600;
+  gap: 1rem;
 
-  opacity: 0.7;
+  margin-bottom: 2rem;
 }
 
+.contact-item {
+  display: flex;
 
-/* Description */
+  align-items: center;
 
-.research-description {
-  max-width: 850px;
+  gap: 0.8rem;
 
-  margin: 0 0 18px;
+  font-size: 1.05rem;
 
-  font-size: 0.95rem;
-  line-height: 1.7;
-
-  opacity: 0.82;
+  color: #fff;
 }
 
+.contact-item i {
+  color: #a26bff;
 
-/* ---------- Publication Link ---------- */
+  font-size: 1.2rem;
+}
 
-.research-link {
-  display: inline-block;
+.contact-item a {
+  color: #a26bff;
 
-  margin-top: auto;
-
-  font-size: 0.9rem;
-  font-weight: 700;
-
-  color: #00d4ff;
   text-decoration: none;
 
-  transition:
-    color 0.25s ease,
-    transform 0.25s ease;
+  transition: color 0.3s ease;
 }
 
-.research-link:hover {
-  color: #ffffff;
-  transform: translateX(4px);
+.contact-item a:hover {
+  color: #fff;
+}
+
+
+/* ---------- Social Links ---------- */
+
+.contact-links {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 1.5rem;
+
+  margin-top: 1rem;
+}
+
+.contact-links a {
+  text-decoration: none;
+}
+
+.contact-links i {
+  font-size: 2rem;
+
+  color: #a26bff;
+
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.contact-links i:hover {
+  color: #919c9c;
+
+  transform: scale(1.2);
+}
+
+
+/* =========================================================
+   PUZZLE MODAL
+   ========================================================= */
+
+.puzzle-modal {
+  display: none;
+
+  position: fixed;
+
+  z-index: 1000;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.85);
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+.puzzle-content {
+  background: #1a1a1a;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  text-align: center;
+
+  box-shadow:
+    0 0 30px rgba(162, 107, 255, 0.4);
+}
+
+.puzzle-content h2 {
+  color: #a26bff;
+
+  margin-bottom: 10px;
+}
+
+#puzzleCanvas {
+  max-width: 100%;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.close {
+  color: #fff;
+
+  float: right;
+
+  font-size: 28px;
+
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #a26bff;
+}
+
+#moves {
+  color: #ccc;
+
+  margin-top: 10px;
+}
+
+
+/* =========================================================
+   MODULAR SECTIONS
+   ========================================================= */
+
+.modular-section {
+  min-height: 100vh;
+
+  padding: 80px 0;
+
+  overflow: hidden;
+}
+
+.modular-section object {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  display: block;
 }
 
 
@@ -555,19 +944,71 @@ nav a:hover {
 
   .research-item {
     grid-template-columns: 180px 1fr;
+
     gap: 25px;
   }
 
   .research-image {
     height: 135px;
   }
+}
 
+
+@media screen and (max-width: 800px) {
+
+  .achievement-item {
+    grid-template-columns: 145px 1fr;
+
+    gap: 22px;
+  }
+
+  .achievement-image {
+    height: 105px;
+  }
 }
 
 
 /* =========================================================
    MOBILE
    ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+  body {
+    padding-top: 150px;
+  }
+
+  header {
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+
+  nav {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+  }
+
+  nav a {
+    margin: 0 0.4rem;
+  }
+
+  .hero {
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
+
 
 @media screen and (max-width: 650px) {
 
@@ -581,6 +1022,7 @@ nav a:hover {
 
   .research-item {
     grid-template-columns: 1fr;
+
     gap: 18px;
 
     padding: 30px 0;
@@ -592,6 +1034,7 @@ nav a:hover {
 
   .research-image {
     width: 100%;
+
     height: 200px;
   }
 
@@ -602,216 +1045,48 @@ nav a:hover {
   .research-description {
     font-size: 0.92rem;
   }
+}
 
+
+@media screen and (max-width: 600px) {
+
+  .achievements-section {
+    padding: 50px 20px;
+  }
+
+  .achievements-header {
+    margin-bottom: 30px;
+  }
+
+  .achievement-item {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+
+    padding: 25px 0;
+  }
+
+  .achievement-item:hover {
+    transform: none;
+  }
+
+  .achievement-image {
+    width: 100%;
+
+    height: 190px;
+  }
+
+  .achievement-content h3 {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* =========================================================
+   SMOOTH SCROLL OFFSET
+   ========================================================= */
+
+:target {
+  scroll-margin-top: 110px;
 }
 ```
-
-/* === Timeline (Academics & Experience) === */
-blockquote {
-  font-style: italic;
-  color: #ccc;
-  margin: 1.5rem 0;
-  border-left: 4px solid #a26bff;
-  padding-left: 1rem;
-}
-
-.academic-banner,
-.experience-banner {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.academic-banner img,
-.experience-banner img {
-  max-width: 500px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(162, 107, 255, 0.2);
-}
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-  margin-top: 2rem;
-}
-
-.timeline-item {
-  position: relative;
-  padding-left: 1.5rem;
-  border-left: 2px solid #a26bff;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -7px;
-  top: 8px;
-  width: 12px;
-  height: 12px;
-  background: #a26bff;
-  border-radius: 50%;
-}
-
-.timeline-item h3 {
-  color: #fff;
-  margin-bottom: 0.3rem;
-}
-
-.timeline-item h4 {
-  color: #a26bff;
-  margin-bottom: 0.4rem;
-}
-
-.timeline-item p {
-  color: #ddd;
-  line-height: 1.6;
-}
-
-/* === Contact Section === */
-#contact {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-#contact p {
-  color: #ddd;
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.05rem;
-  color: #fff;
-}
-
-.contact-item i {
-  color: #a26bff;
-  font-size: 1.2rem;
-}
-
-.contact-item a {
-  color: #a26bff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.contact-item a:hover {
-  color: #fff;
-}
-
-/* === Clean Icon Links (LinkedIn, GitHub, X) === */
-.contact-links {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.contact-links a {
-  text-decoration: none;
-}
-
-.contact-links i {
-  font-size: 2rem;
-  color: #a26bff;
-  transition: color 0.3s, transform 0.2s;
-}
-
-.contact-links i:hover {
-  color: #919c9c;
-  transform: scale(1.2);
-}
-
-/* === Puzzle Modal === */
-.puzzle-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-}
-
-.puzzle-content {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(162, 107, 255, 0.4);
-}
-
-.puzzle-content h2 {
-  color: #a26bff;
-  margin-bottom: 10px;
-}
-
-#puzzleCanvas {
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.close {
-  color: #fff;
-  float: right;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: #a26bff;
-}
-
-#moves {
-  color: #ccc;
-  margin-top: 10px;
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-}
-
-/* === Smooth Scroll Offset === */
-:target {
-  scroll-margin-top: 100px;
-}
-
-
-.modular-section {
-  min-height: 100vh;
-  padding: 80px 0;
-  overflow: hidden;
-}
-
-.modular-section object {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
