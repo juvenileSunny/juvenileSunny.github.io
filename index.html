@@ -1,72 +1,689 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MJM Sunny</title>
-
-  <link rel="icon" type="image/png" href="static/cute-robot-companion-glb/augmented-reality.png">
-  <link rel="apple-touch-icon" href="static/cute-robot-companion-glb/augmented-reality.png">
-
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MJM Sunny — VR developer, HCI researcher, and Computer Science Ph.D. student. Explore research, publications, experience, and education.">
+  <meta name="theme-color" content="#f5f4ef">
+  <title>MJM Sunny | VR, HCI & Data Science</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/main.js" defer></script>
 </head>
-
 <body>
-  <!-- Background -->
-  <div class="background">
-    <img class="image-gradient" src="gradient.png" alt="gradient background" />
-    <div class="layer-blur"></div>
-  </div>
-
-  <!-- Header -->
-  <div class="container">
-    <header>
-      <h1 class="logo">MJM Sunny</h1>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#academics">Academics</a>
-        <a href="#experience">Experience</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a href="#" class="btn-primary" id="playGame">Play Game</a>
-    </header>
-
-    <!-- 🧠 Home Section (Always visible) -->
-    <main id="home">
-      
-
-      <!-- Placeholder for loaded sections -->
-      <div id="content"></div>
-    </main>
-  </div>
-
-  <!-- Puzzle Modal -->
-  <div id="puzzleModal" class="puzzle-modal">
-    <div class="puzzle-content">
-      <span id="closePuzzle" class="close">&times;</span>
-      <h2>Iron Man Puzzle Game</h2>
-      <canvas id="puzzleCanvas" width="420" height="418"></canvas>
-      <p id="moves">Moves: 0</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="MJM Sunny home">MJM SUNNY<span>↗</span></a>
+    <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" hidden>Menu +</button>
+    <nav id="navigation" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#academics">Education</a><a href="#achievements">Certifications</a><a class="nav-contact" href="#contact">Let’s talk ↗</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+  <div class="hero-topline"><span>RESEARCHER · DEVELOPER · EXPLORER</span><span>LITTLE ROCK, ARKANSAS</span></div>
+  <div class="hero-layout">
+    <div class="hero-text">
+      <p class="eyebrow">HELLO, I’M MJM SUNNY</p>
+      <h1 id="hero-title">Exploring the<br>human side of<br><em>virtual worlds.</em></h1>
+      <p class="description">VR enthusiast, HCI researcher, and data scientist. I explore the bridge between human cognition and immersive experiences.</p>
+      <div class="hero-actions"><a class="button" href="#research">Explore my research <span>↗</span></a><a class="text-link" href="#contact">Get in touch ↗</a></div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-caption">HUMAN × DIGITAL</div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="art-core">Δ</div><span class="art-dot dot-one"></span><span class="art-dot dot-two"></span><div class="art-bottom"><span>INTERACTION<br>IN FOCUS</span><span>↗</span></div>
     </div>
   </div>
+  <div class="hero-bottom"><p>Ph.D. in Computer Science <span> / </span> University of Arkansas at Little Rock</p><a href="#about">SCROLL TO EXPLORE ↓</a></div>
+</section>
 
-  <!-- Scripts -->
-  <script src="scripts/model-viewer.js"></script>
-  <script src="scripts/puzzle-game.js"></script>
-  <script src="scripts/header-effects.js"></script>
-  <script src="scripts/main.js"></script>
+<section id="about" class="section">
+<p class="section-label">01 / THE PERSON BEHIND THE WORK</p>
+  <h2>About Me</h2>
+  <p>
+    My journey into immersive technology started in the world of circuits and oscilloscopes. I trained as an Electrical Engineer at the 
+    <a href="https://www.cuet.ac.bd/" target="_blank" rel="noopener noreferrer">Chittagong University of Engineering and Technology (CUET)</a>, where I was captivated by the logic of systems and the elegance of precision engineering. But something was missing—until I encountered code that could respond, adapt, and interact.
+  </p>
+
+  <p>
+    The turning point came when I first experienced Virtual Reality. It wasn’t just the headset or visuals—it was the feeling of presence, the sense that you could think, act, and feel inside a digital world. That moment sparked a profound shift: from hardware to human-centered computing, from circuits to cognition. I realized that I wanted to design systems that didn't just work—but communicated, responded, and understood.
+  </p>
+
+  <p>
+    After graduation, I joined <a href="https://waltonbd.com/" target="_blank" rel="noopener noreferrer">Walton Digi-Tech Industries Limited</a> as a Quality Control Engineer in the Cellphone Quality Assurance Team. I gained hands-on experience in testing and validating complex products—but the deeper takeaway was how tightly technology and human perception are intertwined. That insight fueled my move into Computer Science, where interaction, data, and behavior became the core of my work.
+  </p>
+
+  <p>
+    Today, I’m a researcher and VR developer working at the intersection of <strong>Virtual Reality (VR)</strong>, <strong>Human-Computer Interaction (HCI)</strong>, and <strong>Data Science</strong>. My research focuses on cognitive load, motion precision, and usability in immersive environments—using Unity, Python, and machine learning to turn behavior into insight and feedback into design.
+  </p>
+
+  <p>
+    I recently completed my <strong>Master of Science in Computer Science</strong> and a <strong>Graduate Certificate in Data Science</strong> at the 
+    <a href="https://ualr.edu/" target="_blank" rel="noopener noreferrer">University of Arkansas at Little Rock</a>. I’m now pursuing a <strong>Ph.D. in Computer Science</strong> at the same institution, building intelligent, privacy-aware simulation systems for training, performance, and human-machine collaboration.
+  </p>
+
+  <p>
+    I believe that immersive technologies are not just tools—they are environments for learning, decision-making, and connection. My goal is to design adaptive, inclusive virtual worlds where humans and systems work in sync, turning complexity into clarity.
+  </p>
+</section>
+
+<section id="research" class="section research-section">
+<p class="section-label">02 / RESEARCH & EXPLORATION</p>
+
+  <div class="research-header">
+    <h2>Research & Publications</h2>
+
+    <p>
+      My research spans <strong>Virtual Reality (VR)</strong>,
+      <strong>Human–Computer Interaction (HCI)</strong>, and
+      <strong>Data Science</strong> — exploring how immersive environments
+      can enhance human performance, accessibility, and privacy.
+      My work bridges empirical behavioral studies with data-driven analytics,
+      integrating real-time motion tracking, gaze modeling, and
+      privacy-preserving computation.
+    </p>
+  </div>
+
+  <div class="research-list">
+
+    <!-- Publication 1 -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Conference Paper · 2025</span>
+
+        <h3>
+          Combined Effects of VR and Gaming Expertise on Precision Performance
+        </h3>
+
+        <p class="research-venue">
+          AHFE 2025 — Conference Proceedings
+        </p>
+
+        <p class="research-description">
+          Investigates how varying levels of experience with VR and 3D
+          computer games influence cognitive load and precision task
+          performance. Results indicate that dual-domain expertise improves
+          accuracy, lowers task-load perception, and enhances consistency in
+          immersive environments.
+        </p>
+
+        <a
+          href="https://www.researchgate.net/profile/Jan_Springer3/publication/397424521_Combined_Effects_of_VR_and_Gaming_Expertise_on_Precision_Performance/links/6915001d6218ac0e8f971671/Combined-Effects-of-VR-and-Gaming-Expertise-on-Precision-Performance.pdf"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Publication →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Publication 2 -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Poster Paper · 2025</span>
+
+        <h3>
+          Evaluating Adjustment and Proficiency Disparities in Virtual Reality
+        </h3>
+
+        <p class="research-venue">
+          IEEE VR 2025
+        </p>
+
+        <p class="research-description">
+          Examines how VR and gaming expertise affect user accuracy and
+          cognitive load in precision-based tasks. Findings reveal that users
+          proficient in both domains demonstrate higher efficiency and reduced
+          workload, supporting adaptive VR training systems.
+        </p>
+
+        <a
+          href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=RsZWrjEAAAAJ&citation_for_view=RsZWrjEAAAAJ:UeHWp8X0CEIC"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Publication →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Publication 3 -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Workshop Paper · 2025</span>
+
+        <h3>
+          Gaze Insights in XR: Real-Time Eye-Tracking Analytics with Elasticsearch
+        </h3>
+
+        <p class="research-venue">
+          GEMINI Workshop · IEEE VR 2025
+        </p>
+
+        <p class="research-description">
+          Introduces a scalable framework using the Elastic Stack for
+          real-time gaze analytics in VR. The system supports interactive
+          heatmaps and replay analysis in Unity while implementing
+          privacy-preserving mechanisms for secure gaze data management.
+        </p>
+
+        <a
+          href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=RsZWrjEAAAAJ&citation_for_view=RsZWrjEAAAAJ:qjMakFHDy7sC"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Publication →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Publication 4 -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Conference Paper · 2024</span>
+
+        <h3>
+          Non-Linear Parameterization of Spatial Decision Making in Immersive VR
+        </h3>
+
+        <p class="research-venue">
+          IEEE VR 2024 · Orlando
+        </p>
+
+        <p class="research-description">
+          Explores how spatial decision-making and motor proficiency vary
+          between expert and novice VR users. Using maze-based environments
+          and neural network explainability (SHAP), the study identifies key
+          performance determinants shaping user adaptation.
+        </p>
+
+        <a
+          href="https://ieeexplore.ieee.org/document/10536473"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Paper →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Publication 5 -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Invited Talk · 2023</span>
+
+        <h3>
+          Privacy Concerns from Variances in Spatial Navigability in VR
+        </h3>
+
+        <p class="research-venue">
+          IEEE VR 2023 · Shanghai
+        </p>
+
+        <p class="research-description">
+          Investigates how spatial navigation patterns in VR may expose
+          sensitive behavioral traits. Proposes privacy-aware machine learning
+          frameworks for VR and AR platforms to mitigate user profiling and
+          inference risks.
+        </p>
+
+        <a
+          href="https://arxiv.org/pdf/2302.02525"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          Read Abstract →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Publication 6 -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Conference Paper · 2019</span>
+
+        <h3>
+          Affordable Electricity for Bhashan Char from Renewable Energy
+        </h3>
+
+        <p class="research-venue">
+          IEEE ECCE 2019 · Dhaka
+        </p>
+
+        <p class="research-description">
+          Designed a hybrid renewable energy system using HOMER software to
+          supply sustainable power to Bhashan Char, an offshore settlement for
+          displaced communities. Proposed system cost: 8.9 BDT/kWh.
+        </p>
+
+        <a
+          href="https://ieeexplore.ieee.org/document/8679484"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Paper →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Project -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Academic Project</span>
+
+        <h3>Library Management System</h3>
+
+        <p class="research-description">
+          Developed a hierarchical desktop application integrated with an SQL
+          database to manage library operations efficiently. Strengthened
+          programming and database management expertise.
+        </p>
+
+        <a
+          href="https://github.com/juvenileSunny/LibraryManagementSystem"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Code →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Book -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Book Publication</span>
+
+        <h3>Shoishob Koishore Podartho Bigganer Shuchona</h3>
+
+        <p class="research-description">
+          Authored the section on <strong>Force</strong> in a physics book
+          designed to make science engaging for secondary students in
+          Bangladesh, emphasizing conceptual clarity and curiosity-driven
+          learning.
+        </p>
+
+        <a
+          href="https://www.rokomari.com/book/author/47474/md-jahed-murad-sunny"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          View Book →
+        </a>
+      </div>
+    </article>
+
+
+    <!-- Robotics -->
+    <article class="research-item">
+      
+
+      <div class="research-content">
+        <span class="research-type">Competition · 2018</span>
+
+        <h3>
+          International Outdoor Robotics Competition on Humanitarian Demining
+        </h3>
+
+        <p class="research-venue">
+          IIUM · Malaysia
+        </p>
+
+        <p class="research-description">
+          Participated in the first international outdoor robotics competition
+          on humanitarian demining, gaining hands-on experience with
+          sensor-based navigation and team-based technical problem-solving.
+        </p>
+
+        <a
+          href="https://www.youtube.com/watch?v=6KEIdI9ZEfY"
+          target="_blank" rel="noopener noreferrer"
+          class="research-link"
+        >
+          Watch →
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+      <section id="experience" class="section">
+<p class="section-label">03 / PROFESSIONAL JOURNEY</p>
+        <h2>Professional Journey</h2>
+        <blockquote>
+          <strong>“When something is important enough, you do it even if the odds are not in your favor.”</strong> — Elon Musk
+        </blockquote>
+
+        <div class="experience-banner" hidden>
+          <img data-src="images/iso_sunny.png" alt="Sunny Professional Image" decoding="async">
+        </div>
+
+        <p>
+          Before becoming a Graduate Research Assistant at the <a href="https://eac-ualr.org/" target="_blank" rel="noopener noreferrer">Emerging Analytics Center (EAC)</a> at the <a href="https://ualr.edu/" target="_blank" rel="noopener noreferrer">University of Arkansas at Little Rock (UALR)</a>, my professional path was defined by leadership, operational, and technical roles across both academia and industry. Each experience has shaped my expertise in management, engineering, and applied research.
+        </p>
+
+        <div class="timeline">
+          <!-- Current -->
+          <div class="timeline-item">
+            <h3>Graduate Teaching Assistant</h3>
+            <h4><a href="https://ualr.edu" target="_blank" rel="noopener noreferrer">University of Arkansas at Little Rock</a>, (Aug 2023 – Dec 2025)</h4>
+            <p>
+              Supporting a graduate-level seminar course on Operating Systems. My responsibilities include facilitating in-class discussions, evaluating student-led presentations, and assisting with grading and feedback on seminar topics. This role allows me to engage with advanced OS concepts such as kernel architecture, scheduling algorithms, virtualization, and security, while fostering critical thinking and communication among graduate peers.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <h3>Graduate Research Assistant</h3>
+            <h4><a href="https://eac-ualr.org/" target="_blank" rel="noopener noreferrer">Emerging Analytics Center (EAC)</a>, University of Arkansas at Little Rock (Jan 2023 – Present)</h4>
+            <p>
+              Conducting interdisciplinary research in Virtual Reality (VR), immersive visualization, and machine learning. My work focuses on usability analytics, spatial decision-making, and gaze-based interaction design in XR. The EAC is a hub for innovation in immersive visualization, cybersecurity, IoT, and AI-driven applications, where I contribute to both technical and usability-focused research.
+            </p>
+          </div>
+
+          <!-- Walton -->
+          <div class="timeline-item">
+            <h3>Assistant Director, Cellphone Quality Control Department</h3>
+            <h4><a href="https://waltonbd.com/" target="_blank" rel="noopener noreferrer">Walton Digi-Tech Industries Limited, Bangladesh</a> (Nov 2020 – Apr 2022)</h4>
+            <p>
+              Supervised production and quality control operations in Walton’s mobile manufacturing division. Led teams ensuring process efficiency, ISO compliance, and adherence to safety standards. Collaborated with R&D and supply chain units to reduce defects, optimize workflows, and uphold product quality through Lean and Six Sigma methodologies.
+            </p>
+          </div>
+
+          <!-- Bashir Ahmed -->
+          <div class="timeline-item">
+            <h3>Assistant Supervisor of Operations</h3>
+            <h4>Bashir Ahmed Co. Ltd. (Jun 2019 – Jun 2020)</h4>
+            <p>
+              Managed cargo operations and customs documentation while coordinating logistics teams for efficient shipment handling. Improved workflows by implementing compliance-driven strategies, strengthening the company’s operational performance and supply chain integrity.
+            </p>
+          </div>
+
+          <!-- IEEE Bangladesh -->
+          <div class="timeline-item">
+            <h3>Content Writer</h3>
+            <h4>Professional Activities Committee, IEEE Bangladesh (2018)</h4>
+            <p>
+              Authored and presented technical news and analytical summaries on advancements in engineering and technology for IEEE Bangladesh’s outreach publications. Developed accessible and engaging content that highlighted emerging innovations and contributed to public technical literacy.
+            </p>
+          </div>
+
+          <!-- Chittagong Students Forum -->
+          <div class="timeline-item">
+            <h3>Co-founder & General Secretary</h3>
+            <h4>Chittagong Students Forum, CUET (2018)</h4>
+            <p>
+              Established a cultural and academic platform to promote collaboration and community among students from the Chittagong region. Oversaw event organization, coordination, and community engagement initiatives that strengthened cultural representation on campus.
+            </p>
+          </div>
+
+          <!-- IEEE Student Branch -->
+          <div class="timeline-item">
+            <h3>General Secretary</h3>
+            <h4>IEEE Student Branch, CUET (Sep 2017 – Sep 2018)</h4>
+            <p>
+              Led and coordinated events such as Maker Fest, Biomedical Engineering Poster Competition, and IoT & PCB Design Workshops. Oversaw branch logistics, membership, and communication with IEEE HQ, cultivating technical learning and innovation among student engineers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="academics" class="section">
+<p class="section-label">04 / ACADEMIC FOUNDATIONS</p>
+        <h2>Academic Journey</h2>
+        <blockquote>
+          <strong>“True wisdom is knowing what you do not know.”</strong> — Socrates
+        </blockquote>
+
+        <div class="academic-banner" hidden>
+          <img data-src="images/sunny_grad_img.png" alt="Graduation Image of Sunny" decoding="async">
+        </div>
+
+        <p>
+          I began my academic journey with a passion for engineering and innovation that led me from the foundations of electrical engineering to the forefront of virtual reality and data science. Each phase of my education strengthened my analytical, creative, and research capabilities.
+        </p>
+
+        <div class="timeline">
+          <!-- Graduate Studies -->
+            <div class="timeline-item">
+              <h3>Doctor of Philosophy in Computer Science</h3>
+              <h4><a href="https://ualr.edu/" target="_blank" rel="noopener noreferrer">University of Arkansas at Little Rock</a> (2025–Present)</h4>
+              <p>
+                Currently pursuing a Ph.D. in Computer Science with a focus on Virtual Reality, Human–Computer Interaction, and Data Science. My doctoral research explores immersive technologies and their applications in interactive system design, combining advanced algorithmic models with user-centric data analysis. This builds on my prior graduate work and continues to strengthen my expertise in developing innovative, data-driven, and user-focused computational experiences.
+              </p>
+            </div>
+          <div class="timeline-item">
+            <h3>Master of Science in Computer Science</h3>
+            <h4><a href="https://ualr.edu/" target="_blank" rel="noopener noreferrer">University of Arkansas at Little Rock</a> (2023–2025)</h4>
+            <p>
+              Pursued advanced research in computer science with emphasis on Virtual Reality, Human–Computer Interaction, and Data Science. This program deepens my understanding of algorithms, immersive design, and data-driven system development. I have also completed a Graduate Certificate in Data Science, which provided a strong foundation in analytics, visualization, and real-world data modeling.
+            </p>
+          </div>
+
+          <!-- Undergraduate -->
+          <div class="timeline-item">
+            <h3>Bachelor of Science in Electrical and Electronic Engineering</h3>
+            <h4><a href="https://www.cuet.ac.bd/" target="_blank" rel="noopener noreferrer">Chittagong University of Engineering and Technology (CUET)</a></h4>
+            <p>
+              My undergraduate years at CUET were driven by a singular dream—to become an engineer. During this period, I cultivated a deep interest in circuits, embedded systems, and computational design. These formative years transformed my fascination with technology into a lifelong commitment to innovation and research.
+            </p>
+          </div>
+
+          <!-- High School -->
+          <div class="timeline-item">
+            <h3>Higher Secondary Education</h3>
+            <h4><a href="https://ctgcollege.gov.bd/" target="_blank" rel="noopener noreferrer">Chittagong College</a></h4>
+            <p>
+              Completed my Higher Secondary School Certificate (HSC) with distinction, achieving a GPA of 5.00. My focus on physics, mathematics, and computer studies provided a solid foundation for engineering education and inspired my scientific curiosity.
+            </p>
+          </div>
+
+          <!-- Secondary -->
+          <div class="timeline-item">
+            <h3>Secondary School Certificate (SSC)</h3>
+            <h4><a href="https://ctgcs.edu.bd/" target="_blank" rel="noopener noreferrer">Chittagong Collegiate School and College</a></h4>
+            <p>
+              Achieved GPA 5.00 and received a government scholarship from the Science Group. This milestone marked the beginning of my commitment to academic excellence and established the groundwork for my future engineering studies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+<section id="achievements" class="section achievements-section">
+<p class="section-label">05 / CONTINUOUS LEARNING</p>
+
+  <div class="achievements-header">
+    <h2>Achievements & Certifications</h2>
+    <p>
+      Professional certifications and technical training across Unity development,
+      data science, machine learning, deep learning, analytics, and collaborative
+      software development.
+    </p>
+  </div>
+
+  <div class="achievement-list">
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">Unity · Game Development</span>
+        <h3>Complete C# Unity Game Developer 3D</h3>
+        <p>
+          Comprehensive course on Unity and C# programming for 3D games —
+          covering coding principles, mechanics, and gameplay design.
+          Strengthened my VR development expertise.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">Elasticsearch · Data Analytics</span>
+        <h3>Elasticsearch Masterclass with Logstash and Kibana</h3>
+        <p>
+          Hands-on training in managing, analyzing, and visualizing large-scale
+          data with the ELK stack — applied for real-time analytics and data
+          visualization in VR research.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">Artificial Intelligence · Deep Learning</span>
+        <h3>Deep Learning A–Z™: Hands-On Artificial Neural Networks</h3>
+        <p>
+          Built and deployed neural networks for real-world AI applications,
+          gaining practical insight into deep learning architectures and
+          optimization strategies.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">Python · Machine Learning</span>
+        <h3>Machine Learning, Data Science & Deep Learning with Python</h3>
+        <p>
+          Advanced coursework on supervised and unsupervised learning,
+          predictive analytics, and deep learning using Python, reinforcing
+          data-driven approaches in immersive analytics.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">DeepLearning.AI · Neural Networks</span>
+        <h3>Neural Networks and Deep Learning</h3>
+        <p>
+          Developed an in-depth understanding of backpropagation, activation
+          functions, regularization, and neural network design, improving my
+          ability to integrate machine learning into behavioral modeling in VR.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">NVIDIA · Deep Learning</span>
+        <h3>Getting Started with Deep Learning</h3>
+        <p>
+          Hands-on NVIDIA training covering deep learning fundamentals,
+          frameworks, model development, and practical deployment workflows.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">Git · Unity · Version Control</span>
+        <h3>Get Git Smart: Learn Git in Unity, SourceTree, GitHub</h3>
+        <p>
+          Practical version control training integrating Unity projects with
+          Git, GitHub, and SourceTree, improving collaborative development and
+          project management workflows.
+        </p>
+      </div>
+    </article>
+
+
+    <article class="achievement-item">
+      
+
+      <div class="achievement-content">
+        <span class="achievement-type">University of Michigan · Data Science</span>
+        <h3>Introduction to Data Science in Python</h3>
+        <p>
+          Covered data wrangling, statistical analysis, data manipulation,
+          and visualization using Python, forming a foundation for my
+          data-centric research in immersive technologies.
+        </p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+      <section id="contact" class="section">
+<p class="section-label">06 / START A CONVERSATION</p>
+        <h2>Get in Touch</h2>
+        <p>
+          I’m always happy to connect with fellow researchers, developers, and innovators.  
+          Whether you’d like to discuss collaboration opportunities, VR usability research, or just exchange ideas—feel free to reach out!
+        </p>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-label">EMAIL</span>
+            <span><a href="mailto:msunny@ualr.edu">msunny@ualr.edu</a></span>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-label">PHONE</span>
+            <span><a href="tel:+15405585283">(540) 558-5283</a></span>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-label">BASED IN</span>
+            <span>Little Rock, Arkansas – 72204</span>
+          </div>
+        </div>
+
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/jahed-murad-sunny/" target="_blank" rel="noopener noreferrer">
+              LinkedIn ↗
+            </a>
+            <a href="https://github.com/juvenileSunny" target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
+            <a href="https://twitter.com/JahedSunny" target="_blank" rel="noopener noreferrer">
+              X / Twitter ↗
+            </a>
+          </div>
+      </section>
+  </main>
+  <footer><a class="wordmark" href="#home">MJM SUNNY<span>↗</span></a><p>Virtual reality. Human interaction. Meaningful data.</p><a href="#home">Back to top ↑</a></footer>
 </body>
 </html>
-
-
