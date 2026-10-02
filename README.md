@@ -1,171 +1,218 @@
-# MJM Sunny — single-page portfolio
+# MJM Sunny — Research, XR & Interactive Systems
 
-A responsive, static portfolio for GitHub Pages. Every section lives in its own HTML file; `build.py` combines them into the included `index.html`. All content is in the generated HTML, so visitors do not depend on JavaScript or runtime requests to read it.
+**VR Developer · HCI Researcher · Computer Science Ph.D. Student**
 
-## Publish
+[Explore my portfolio](https://juvenilesunny.github.io/) · [LinkedIn](https://www.linkedin.com/in/jahed-murad-sunny/) · [GitHub](https://github.com/juvenileSunny) · [Email](mailto:msunny@ualr.edu)
 
-1. Extract this ZIP and copy the **contents** of the `portfolio` folder into your GitHub Pages repository root, beside your existing `images` folder. Back up your existing files before replacing them.
-2. Commit `index.html`, `assets/`, and `.nojekyll`. Also commit `sections/`, `template.html`, and `build.py` if you want the editable sources in your repository.
-3. Use your repository's GitHub Pages branch publishing configuration with the repository root as the source. The included `index.html` is already built; no build service, Node.js, or Python runtime is needed for hosting.
+I'm **Mohammad Jahed Murad Sunny**, a Ph.D. student in Computer Science at the **University of Arkansas at Little Rock** and a Graduate Research Assistant at the **Emerging Analytics Center**. I build interactive systems and study how people use them, with a focus on virtual reality, human–computer interaction, and behavioral data analysis.
 
-All local URLs are relative, so this works for both `username.github.io` and `username.github.io/project/`. The ZIP has not been published to your repository.
+My background began in Electrical and Electronic Engineering at **Chittagong University of Engineering and Technology (CUET)**. After working in cellphone quality control at Walton Digi-Tech, I moved toward computer science and immersive technology. I completed my M.S. in Computer Science and a Graduate Certificate in Data Science at UA Little Rock, where I now continue my doctoral research.
 
-## Edit one section
+This repository brings together my research, publications, professional experience, and small interactive experiments. It also documents the website structure so others can understand it and adapt the implementation for their own portfolios.
 
-Edit its file in `sections/`, then run this command from the portfolio directory:
+## What I work on
 
-```sh
-python build.py
+- **Immersive interaction and usability:** investigating how people learn, navigate, and perform precision tasks in virtual environments.
+- **Human movement and performance:** analyzing motion precision, user expertise, cognitive load, and behavioral differences in VR.
+- **Gaze and interaction analytics:** connecting Unity applications with data pipelines to explore attention and interaction patterns.
+- **Interactive systems:** building applications and experiments that connect user input, meaningful feedback, and measurable behavior.
+
+My work uses tools including **Unity, C#, OpenXR, Python, machine learning, and the Elastic Stack**. My research and publications page includes work on VR and gaming expertise, precision performance, spatial decision-making, and real-time gaze analytics.
+
+## Explore the portfolio
+
+| Section | What you will find |
+| --- | --- |
+| About | My path from electrical engineering to immersive computing |
+| Research & Publications | Papers, projects, and research interests |
+| Experience | Research, teaching, industry, and community roles |
+| Education | My academic background |
+| Achievements & Certifications | Technical training and continued learning |
+| Games & Experiments | Short browser games exploring attention, timing, precision, and interface design |
+| Contact | Ways to connect about research, development, and collaboration |
+
+## Games as interaction experiments
+
+The games offer a hands-on way to explore questions behind HCI: How does a smaller target affect pointing? What happens when a visual search becomes cluttered? How does changing a rule affect response time?
+
+Each game opens in a shared dialog and starts with fresh state. Closing it ends the session. The game modules do not save scores or upload gameplay results.
+
+| Game | Interaction explored | Feedback |
+| --- | --- | --- |
+| Sliding Puzzle | Spatial arrangement and planning | Moves and completion |
+| Target Rush | Fast target selection | Score, accuracy, escaped targets |
+| Signal Watch | Detecting a relevant signal among distractors | Hits, misses, false responses, response time |
+| Precision Path | Pointer control through constrained paths | Time, boundary crossings, distance |
+| Target Switch | Small versus large pointing targets | Time per hit and missed clicks |
+| Change Detective | Noticing changes between alternating scenes | Detection time, wrong guesses, timeouts |
+| Stop Signal | Responding to GO while withholding responses on stop trials | GO responses, successful stops, response time |
+| Rule Switch | Switching between color and shape rules | Errors and switch/repeat response times |
+| Quiet Search | Clean versus cluttered search layouts | Search time and errors |
+| Rhythm Tracker | Maintaining timing with and without a visible cue | Timing error, missed beats, extra taps |
+
+These are informal interaction demos, not validated cognitive tests or evidence of improved everyday attention. Input device, screen size, practice, and small sample sizes affect results. Target Switch and Quiet Search randomize condition order, but their comparisons are still demonstrations rather than controlled studies.
+
+Precision Path requires a mouse or touch input. Other games use buttons that can also be activated with a keyboard; keyboard input changes the difficulty of pointing and search tasks. The eight HCI games stop when the tab becomes hidden. Target Rush instead keeps its 30-second clock running.
+
+## How the website works
+
+The site uses **HTML, CSS, and vanilla JavaScript**, with a small **Python 3** script to assemble the page. There is no npm installation, frontend framework, database, or application server required.
+
+Each portfolio section is an independent HTML file. `build.py` combines those sections with `template.html` to produce `index.html`. The generated page contains the portfolio text, so reading it does not depend on JavaScript. Games, mobile-menu behavior, and optional image loading use JavaScript.
+
+| File or folder | Purpose |
+| --- | --- |
+| `index.html` | Generated page served to visitors |
+| `template.html` | Metadata, navigation, footer, CSS links, and script tags |
+| `build.py` | Section order and page assembly |
+| `sections/` | Editable home, about, research, experience, academics, achievements, games, and contact sections |
+| `assets/styles.css` | Portfolio layout, typography, colors, and responsive styles |
+| `assets/main.js` | Navigation behavior and optional image loading |
+| `assets/games.css` | Shared game dialog and puzzle styles |
+| `scripts/games.js` | Game registration, launch buttons, dialog, and session cleanup |
+| `scripts/puzzle-logic.js` | Puzzle move rules, solvable shuffle, and win detection |
+| `scripts/puzzle-game.js` | Puzzle interface |
+| `scripts/shooting-game.js` | Target Rush |
+| `scripts/hci-core.js` | Shared helpers for the eight HCI games |
+| `scripts/*-*.js` | Individual game modules, such as `signal-watch.js` and `quiet-search.js` |
+| `images/` | Portfolio images |
+| `static/` | Optional game assets, including the puzzle image |
+| `.nojekyll` | Keeps the prebuilt site on the static publishing path |
+
+## Run a local copy
+
+You can download the repository ZIP and extract it, or clone it:
+
+```bash
+git clone https://github.com/juvenileSunny/juvenileSunny.github.io.git
+cd juvenileSunny.github.io
 ```
 
-Commit the rebuilt `index.html` along with your changes. Python 3 uses only its standard library. On Windows, `py build.py` also works. You can alternatively edit `index.html` directly, but a later build will overwrite those direct edits.
+Open `index.html` directly for a quick preview. To preview through a local HTTP server, run this from the folder containing `index.html`:
 
-| File | Section |
-| --- | --- |
-| `sections/home.html` | Introduction |
-| `sections/about.html` | About |
-| `sections/research.html` | All nine research, publication, and project entries |
-| `sections/experience.html` | All seven professional and community roles |
-| `sections/academics.html` | All five education entries |
-| `sections/achievements.html` | All eight training and certification entries |
-| `sections/contact.html` | Email, phone, location, and social links |
-
-`template.html` contains the page metadata, header, navigation, and footer. `assets/styles.css` contains colors and responsive layouts. `assets/main.js` adds the mobile menu, active navigation, and optional image loading.
-
-## Images
-
-Only HTML files were supplied. Copy the original image files into `images/` using the exact case-sensitive names listed in `images/ASSETS.txt`. They will appear automatically, and missing files leave no empty image frames. The site works without those images. Optional education and experience images require JavaScript; the text and links do not. Research and certifications use text-only lists with thin separators.
-
-The original robot model was not supplied. The new home section uses a CSS illustration with no external dependency. The original model-viewer has not been included.
-
-## Preview
-
-Open `index.html` directly in a browser, or run:
-
-```sh
+```bash
 python -m http.server 8000
 ```
 
-Then open `http://localhost:8000`. Mobile navigation, reduced-motion preferences, keyboard focus, skip navigation, and print styles are included. Long sections expand naturally without clipping or forced scroll snapping.
+Open [localhost:8000](http://localhost:8000). Stop the server with **Ctrl + C**. On Windows, use `py` instead of `python` if needed; on some macOS/Linux installations, use `python3`.
 
-## Content note
+Python is only needed for the local server or rebuilding. The published site does not run Python.
 
-The supplied section text, dates, publication descriptions, and external destinations have been retained. The introductory hero was rewritten using the supplied information. Publication destinations and biographical claims were not independently verified. In particular, the Teaching Assistant dates remain **Aug 2023 – Dec 2025**, as supplied; check that range before publishing.
+## Make it your own
 
+1. Replace the introduction, biography, research, experience, education, and contact details in `sections/`.
+2. Update the title, description, name, navigation, and links in `template.html`.
+3. Replace the portfolio images with your own. Keep filenames and paths consistent, including capitalization.
+4. Adjust colors and typography in `assets/styles.css`.
+5. Update this README with your own background, repository URL, and contact links.
+6. Rebuild the page:
 
-## Games: fresh sessions, modular scripts
+```bash
+python build.py
+```
 
-The new `sections/games.html` section hosts browser games in a shared native dialog. Escape, Close, or clicking outside ends a session and returns focus to Play. No progress is saved in cookies or browser storage. Games require JavaScript.
+Commit the generated `index.html` along with the source changes. The build runs locally; simply uploading edited section files will not change the published page.
 
-Upload `scripts/` and `assets/games.css` together with the rebuilt `index.html`. Keep your existing image at `static/ironman.png` to show the picture puzzle. It is not included in this package. Without it, the numbered puzzle remains playable. Images are cropped into a square tile layout.
+| Change | Rebuild needed? |
+| --- | --- |
+| Edit a file in `sections/` | Yes |
+| Edit navigation, metadata, or script tags in `template.html` | Yes |
+| Change section order in `build.py` | Yes |
+| Edit an existing CSS or JavaScript file | No |
+| Replace an image at the same path | No |
+| Edit this README | No |
 
-- `scripts/games.js`: game registry, list, dialog, and session cleanup.
-- `scripts/puzzle-logic.js`: legal moves, solvable shuffle, and exact goal check.
-- `scripts/puzzle-game.js`: puzzle UI, keyboard/touch interaction, and optional image.
-- `assets/games.css`: shared game window and puzzle styles.
+Direct edits to `index.html` work, but the next build overwrites them. Prefer editing the source files and rebuilding. If you manually add a script tag to `index.html`, add it to `template.html` as well.
 
-### Add another game
+For an additional portfolio section, create its HTML file with a unique section ID, add its name to `ORDER` in `build.py`, add a matching navigation link in `template.html`, and rebuild.
 
-1. Create `scripts/my-game.js` using the pattern below.
-2. Add `<script src="scripts/my-game.js" defer></script>` after `scripts/games.js` in `template.html`.
-3. Run `python build.py` and upload the rebuilt page and your new script. Its Play entry appears automatically.
+### Images
+
+Optional education and experience images appear when their files are available; missing images are hidden. Research and certification entries use minimal text lists. The home illustration is drawn with CSS.
+
+The puzzle looks for `static/ironman.png`. Without that file it uses numbered tiles. To use your own picture, replace that image or update both its loading path in `scripts/puzzle-game.js` and its CSS path in `assets/games.css`. A square image gives the most predictable result.
+
+When making your own portfolio, use your own biography and media, and check the repository's license and the permissions for any third-party assets before reuse.
+
+## Add a game
+
+Create `scripts/my-game.js`. Each game registers a unique ID, a title, a description, and a `mount` function. The function creates a fresh session and returns the cleanup function used when the dialog closes.
 
 ```js
 PortfolioGames.register({
-  id: 'my-game', // unique identifier
-  title: 'My Game',
-  description: 'A short description.',
+  id: 'click-counter',
+  title: 'Click Counter',
+  description: 'A minimal example of a session-based game.',
+
   mount(container) {
-    // Create fresh state here on every launch.
+    let clicks = 0;
     const events = new AbortController();
-    container.innerHTML = '<button type="button">Start</button>';
-    container.querySelector('button').addEventListener('click', () => {
-      // Your gameplay code.
-    }, {signal: events.signal});
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'Clicks: 0';
+    container.append(button);
+
+    button.addEventListener('click', () => {
+      clicks += 1;
+      button.textContent = `Clicks: ${clicks}`;
+    }, { signal: events.signal });
+
     return () => {
       events.abort();
-      // Cancel your timers and animation frames, stop audio,
-      // and dispose of any game-engine instance here.
+      // Also clear any timers, cancel animation frames,
+      // stop audio, and dispose of engine instances you create.
       container.replaceChildren();
     };
   }
 });
 ```
 
-For a Unity/WebGL or other engine game, mount its player inside the container and shut down its runtime in the cleanup function. Its exported files must also be uploaded. Keep all per-session state inside `mount`; do not write to persistent browser storage if you want fresh sessions only.
-# Example - Add Target Rush to your portfolio
-
-This add-on uses the existing Games section and modal from the puzzle update. It does not replace your portfolio or puzzle files.
-
-1. Copy `scripts/shooting-game.js` into the existing `scripts` folder in your repository.
-2. Open `index.html`. Find this line near the top:
+Add its script tag in `template.html`, after the existing `scripts/games.js` tag:
 
 ```html
-<script src="scripts/puzzle-game.js" defer></script>
+<script src="scripts/my-game.js" defer></script>
 ```
 
-Add this line directly below it:
+Run `python build.py`, then upload the new script, updated template, and generated `index.html`. The game adds its own entry to the list; no edit to `sections/games.html` is required.
 
-```html
-<script src="scripts/shooting-game.js" defer></script>
-```
+**Load order matters:** `games.js` must load before any game registers. `puzzle-logic.js` must load before `puzzle-game.js`. `hci-core.js` must load before the eight HCI modules. Keep `defer` on these script tags.
 
-3. Add the same line to `template.html`, below the puzzle script, so a future build keeps the game.
-4. Commit and upload `scripts/shooting-game.js`, `index.html`, and `template.html`. Refresh the published page after deployment.
+Remove a game's script tag from `template.html` and rebuild to remove it from the list. Keep per-session state inside `mount`, and avoid persistent browser storage if you want every launch to start fresh.
 
-No CSS, images, or edits to `sections/games.html` are needed. The script registers its own entry and includes its own scoped styles. The existing `scripts/games.js` must load before it.
+## Publish your version on GitHub Pages
 
-You do not need to run `build.py` if you manually edit both HTML files above. Alternatively, edit only `template.html`, run `python build.py`, and upload the generated `index.html` too.
+1. Put the website files in your repository root, with `index.html` at the top level. If using an extracted package, copy the **contents** of its `portfolio` folder rather than nesting that folder in the repository.
+2. Include the required `assets/`, `scripts/`, and any image folders, plus `.nojekyll`. Keep the editable sources in the repository for future updates.
+3. In the repository, open **Settings → Pages**.
+4. Under **Build and deployment**, choose **Deploy from a branch**.
+5. Select your publishing branch, choose **`/(root)`**, and save.
+6. Check the deployment status, then open the URL shown in Pages settings.
 
-## Play
+For a personal homepage, use a repository named `YOUR-USERNAME.github.io`. Relative asset paths also support a project site under `YOUR-USERNAME.github.io/REPOSITORY/`.
 
-Choose Games → Target Rush → Play, then Start round. Hit targets with a mouse or touch. Keyboard players can Tab to the target and activate it with Enter or Space. Each hit earns 10 points. The round ends after 30 seconds, even if the tab is in the background. Restart round resets the score and clock. Closing the modal removes all game listeners and timers. Reopening starts fresh.
+This setup publishes the committed `index.html`; it does not automatically execute `build.py`. Preserve any existing configuration you still need when updating a working site. If you copy a repository with a custom domain, remove or replace the original owner's domain configuration for your own deployment.
 
-## Customize
+See [GitHub's publishing-source guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) for configuration details.
 
-In `scripts/shooting-game.js`, `duration = 30000` controls the round length in milliseconds. Update the displayed instructions if you change it. `Math.max(650, 1700 - hits * 35)` controls target lifetime: the initial lifetime is 1700 ms, decreasing by 35 ms per hit, with a 650 ms minimum.
+## Troubleshooting
 
-Keyboard activation deliberately keeps focus on the target after it moves, making this an accessible alternative to pointer aiming rather than an equivalent difficulty mode. Scores are local to the round; there is no leaderboard or storage.
+| Problem | What to check |
+| --- | --- |
+| Section edits do not appear | Rebuild and upload the resulting `index.html` |
+| A game is missing | Check its script tag, filename, upload location, and dependency order |
+| All HCI games are missing | Confirm `hci-core.js` loads before those modules |
+| A script or image returns 404 | Check the path, case-sensitive filename, and accidental extra `portfolio/` folder |
+| The old design remains visible | Confirm deployment finished, then hard refresh with Ctrl + Shift + R |
+| Styling is missing | Confirm `assets/styles.css` and `assets/games.css` are uploaded |
+| A game fails to open | Check the browser's developer console for JavaScript errors |
 
-# Eight modular HCI games
+Before publishing changes, check desktop and narrow-screen layouts, navigation links, and the games you changed. Open, close, and reopen a game to confirm that it starts fresh. Automated logic checks do not replace testing in an actual browser.
 
-Copy the nine JavaScript files from scripts/ into your existing scripts/ folder. Keep games.js, both puzzle scripts, and shooting-game.js.
+## Connect
 
-Add the following block in BOTH index.html and template.html, inside <head>, after the existing puzzle/shooting scripts. The existing scripts/games.js must be above this block. Include hci-core.js before the eight games.
+I welcome conversations about VR usability, human–computer interaction, behavioral analytics, and interactive application development.
 
-```html
-<script src="scripts/hci-core.js" defer></script>
-<script src="scripts/signal-watch.js" defer></script>
-<script src="scripts/precision-path.js" defer></script>
-<script src="scripts/target-switch.js" defer></script>
-<script src="scripts/change-detective.js" defer></script>
-<script src="scripts/stop-signal.js" defer></script>
-<script src="scripts/rule-switch.js" defer></script>
-<script src="scripts/quiet-search.js" defer></script>
-<script src="scripts/rhythm-tracker.js" defer></script>
-```
-
-Upload the new scripts and the two edited HTML files. No CSS changes, dependencies, image assets, server, or edits to sections/games.html are needed. Each game registers its own list entry and uses the existing modal. No build command is required if both HTML files are edited. Alternatively, edit template.html and run python build.py to regenerate index.html.
-
-To remove a game, remove its script tag from both HTML files. Each game lives in its own script, so you can edit or add games independently. hci-core.js manages styles, timeouts, events, restart, and disposal. All state is session-only. Hidden tabs end active sessions rather than contaminating timed results.
-
-## Included games
-
-| Game | Session | Results |
-| --- | --- | --- |
-| Signal Watch | 20 symbols, 7 targets | Hits, misses, false responses, correct response time |
-| Precision Path | Wide, narrow, curved tracing paths | Time, boundary crossings, distance per round |
-| Target Switch | 12 small and 12 large targets | Mean time per hit and missed clicks by condition |
-| Change Detective | 5 alternating scenes, 20 seconds maximum each | Detection time, wrong guesses, timeouts |
-| Stop Signal | 14 GO and 6 stop trials | GO responses, misses, successful stops, GO response time |
-| Rule Switch | 20 randomly assigned color/shape rules | Errors, correct switch/repeat response times and counts |
-| Quiet Search | 6 clean and 6 cluttered grids | Mean search time and errors by condition |
-| Rhythm Tracker | 4 practice, 8 visible, 4 hidden beats | Absolute timing error, missed beats, extra taps |
-
-These are interaction demos, not validated tests or evidence of improved everyday attention. Small samples, practice, condition order, screen size, and input device affect results. Target Switch and Quiet Search randomize condition order. No scores are uploaded or saved.
-
-Precision Path requires mouse or touch. Buttons in the other games also support keyboard activation. Keyboard activation changes the nature of pointing/search tasks, so use the same pointer device for comparisons. Rhythm Tracker uses visual feedback only; no audio assets are required. Path distance is measured in fixed canvas coordinate units. Boundary crossings count entries outside a vertical corridor around the path, not time outside. The stop-signal demo uses a fixed 180 ms delay, with no estimated stop-signal reaction time.
-
-## Quick check after upload
-
-Hard refresh the published page. The Games section should show the puzzle, Target Rush (if previously installed), and eight new games. Open one, start, close, then reopen: it should show a fresh start screen. If none of the eight appears, check the hci-core.js path and script order. If only one is missing, check its exact filename and script tag. GitHub Pages filenames are case-sensitive.
+- **Portfolio:** [juvenilesunny.github.io](https://juvenilesunny.github.io/)
+- **Email:** [msunny@ualr.edu](mailto:msunny@ualr.edu)
+- **LinkedIn:** [jahed-murad-sunny](https://www.linkedin.com/in/jahed-murad-sunny/)
+- **GitHub:** [juvenileSunny](https://github.com/juvenileSunny)
