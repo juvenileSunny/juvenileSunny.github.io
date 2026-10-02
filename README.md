@@ -93,3 +93,36 @@ PortfolioGames.register({
 ```
 
 For a Unity/WebGL or other engine game, mount its player inside the container and shut down its runtime in the cleanup function. Its exported files must also be uploaded. Keep all per-session state inside `mount`; do not write to persistent browser storage if you want fresh sessions only.
+# Example - Add Target Rush to your portfolio
+
+This add-on uses the existing Games section and modal from the puzzle update. It does not replace your portfolio or puzzle files.
+
+1. Copy `scripts/shooting-game.js` into the existing `scripts` folder in your repository.
+2. Open `index.html`. Find this line near the top:
+
+```html
+<script src="scripts/puzzle-game.js" defer></script>
+```
+
+Add this line directly below it:
+
+```html
+<script src="scripts/shooting-game.js" defer></script>
+```
+
+3. Add the same line to `template.html`, below the puzzle script, so a future build keeps the game.
+4. Commit and upload `scripts/shooting-game.js`, `index.html`, and `template.html`. Refresh the published page after deployment.
+
+No CSS, images, or edits to `sections/games.html` are needed. The script registers its own entry and includes its own scoped styles. The existing `scripts/games.js` must load before it.
+
+You do not need to run `build.py` if you manually edit both HTML files above. Alternatively, edit only `template.html`, run `python build.py`, and upload the generated `index.html` too.
+
+## Play
+
+Choose Games → Target Rush → Play, then Start round. Hit targets with a mouse or touch. Keyboard players can Tab to the target and activate it with Enter or Space. Each hit earns 10 points. The round ends after 30 seconds, even if the tab is in the background. Restart round resets the score and clock. Closing the modal removes all game listeners and timers. Reopening starts fresh.
+
+## Customize
+
+In `scripts/shooting-game.js`, `duration = 30000` controls the round length in milliseconds. Update the displayed instructions if you change it. `Math.max(650, 1700 - hits * 35)` controls target lifetime: the initial lifetime is 1700 ms, decreasing by 35 ms per hit, with a 650 ms minimum.
+
+Keyboard activation deliberately keeps focus on the target after it moves, making this an accessible alternative to pointer aiming rather than an equivalent difficulty mode. Scores are local to the round; there is no leaderboard or storage.
