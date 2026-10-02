@@ -1,0 +1,14 @@
+.game-list{margin-top:35px;border-top:1px solid var(--line)}
+.game-row{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:25px 0;border-bottom:1px solid var(--line)}
+.game-row h3{margin-bottom:7px}.game-row p{margin:0;color:var(--muted);font-size:14px}.game-row .button{white-space:nowrap;border:0;cursor:pointer}
+#game-dialog{width:min(560px,calc(100% - 28px));max-height:90svh;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:25px;background:var(--paper);color:var(--ink)}
+#game-dialog::backdrop{background:rgba(10,28,22,.7)}
+.game-dialog-header,.puzzle-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px}.game-dialog-header h3{margin:0}.game-dialog-header button,.puzzle-toolbar button{background:transparent;border:1px solid var(--line);border-radius:20px;padding:7px 13px;color:var(--ink);cursor:pointer;font-size:12px}
+.game-instructions{font-size:13px!important;line-height:1.7;margin:20px 0!important}.puzzle-toolbar{font-size:13px;margin-bottom:18px}
+.puzzle-board{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:min(100%,390px);margin:auto}
+.puzzle-tile{aspect-ratio:1;border:1px solid #a5b396;border-radius:5px;background-color:#e4edb3;color:#193831;font-weight:700;font-size:clamp(20px,5vw,32px);cursor:pointer;touch-action:manipulation;padding:0}
+.puzzle-tile:hover:not(:disabled){filter:brightness(.93)}.puzzle-tile.empty{background:transparent!important;border:1px dashed var(--line);cursor:default}
+.with-image .puzzle-tile:not(.empty){background-image:url('../static/ironman.png');background-size:300% 300%;color:white;text-shadow:0 1px 4px black,1px 0 4px black}
+.puzzle-status{min-height:1.8em;margin:15px 0 0;font-size:14px!important;font-weight:600}.session-note{font-size:11px!important;color:var(--muted);margin:10px 0 0}
+@media(max-width:1050px){.site-header nav{gap:11px}}
+@media(max-width:430px){#game-dialog{padding:18px}.game-row{align-items:flex-start;flex-direction:column}.game-dialog-header h3{font-size:20px}}

@@ -1,92 +1,66 @@
-// scripts/puzzle-game.js
-const playButton = document.querySelector('.btn-primary');
-const modal = document.getElementById('puzzleModal');
-const closeBtn = document.getElementById('closePuzzle');
-const canvas = document.getElementById("puzzleCanvas");
-const ctx = canvas?.getContext("2d");
-const movesText = document.getElementById("moves");
-
-if (playButton && canvas && ctx) {
-  const img = new Image();
-  img.src = "static/ironman.png";
-  const size = 3;
-  const tileSize = canvas.width / size;
-  let tiles = [];
-  let empty = { x: size - 1, y: size - 1 };
-  let moves = 0;
-
-  playButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.style.display = 'flex';
-    initPuzzle();
-  });
-
-  closeBtn.addEventListener('click', () => modal.style.display = 'none');
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-  });
-
-  function initPuzzle() {
-    moves = 0;
-    movesText.textContent = "Moves: 0";
-    tiles = [];
-
-    for (let y = 0; y < size; y++)
-      for (let x = 0; x < size; x++) tiles.push({ x, y });
-
-    tiles.pop();
-    empty = { x: size - 1, y: size - 1 };
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+/* Optional picture: place your existing image at static/ironman.png.
+   Numbered tiles work immediately if the image is unavailable. */
+PortfolioGames.register({
+  id: 'sliding-puzzle',
+  title: 'Sliding Puzzle',
+  description: 'A 3 × 3 puzzle. Slide the tiles into order, one move at a time.',
+  mount(container) {
+    const rules = SlidingPuzzle;
+    let board, moves, complete;
+    let disposed = false;
+    const controller = new AbortController();
+    container.innerHTML = `
+      <p class="game-instructions" id="puzzle-help">Arrange tiles 1–8 from left to right, top to bottom, leaving the bottom-right space empty. Click or tap a tile beside the gap. Keyboard: Tab to a tile, then Enter or Space.</p>
+      <div class="puzzle-toolbar"><span id="puzzle-moves">Moves: 0</span><button type="button" id="puzzle-restart">New puzzle ↻</button></div>
+      <div class="puzzle-board" role="group" aria-label="Sliding puzzle board" aria-describedby="puzzle-help"></div>
+      <p class="puzzle-status" role="status" aria-live="polite"></p>
+      <p class="session-note">Closing ends this session. Reopening starts a new puzzle.</p>`;
+    const grid = container.querySelector('.puzzle-board');
+    const counter = container.querySelector('#puzzle-moves');
+    const status = container.querySelector('.puzzle-status');
+    const tiles = Array.from({length: 9}, (_, index) => {
+      const tile = document.createElement('button');
+      tile.type = 'button'; tile.className = 'puzzle-tile';
+      tile.addEventListener('click', () => {
+        const movedValue = board[index];
+        if (complete || !rules.move(board, index)) return;
+        moves++;
+        complete = rules.solved(board);
+        render();
+        // The clicked cell is now empty; keep keyboard focus on the moved tile.
+        tiles[board.findIndex(value => value === movedValue)]?.focus();
+        status.textContent = complete ? `Puzzle solved in ${moves} moves! Start a new puzzle to play again.` : '';
+      }, {signal: controller.signal});
+      grid.append(tile); return tile;
+    });
+    function render() {
+      board.forEach((value, i) => {
+        const tile = tiles[i];
+        tile.dataset.value = String(value);
+        tile.textContent = value ? String(value) : '';
+        tile.classList.toggle('empty', value === 0);
+        tile.disabled = value === 0;
+        tile.setAttribute('aria-label', value ? `Tile ${value}, row ${Math.floor(i / 3) + 1}, column ${i % 3 + 1}` : 'Empty space');
+        tile.style.backgroundPosition = `${((value - 1) % 3) * 50}% ${Math.floor((value - 1) / 3) * 50}%`;
+      });
+      counter.textContent = 'Moves: ' + moves;
     }
-    drawPuzzle();
-  }
-
-  function drawPuzzle() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let index = 0;
-    for (let row = 0; row < size; row++) {
-      for (let col = 0; col < size; col++) {
-        if (empty.x === col && empty.y === row) continue;
-        const tile = tiles[index];
-        ctx.drawImage(img, tile.x * tileSize, tile.y * tileSize, tileSize, tileSize,
-          col * tileSize, row * tileSize, tileSize, tileSize);
-        index++;
-      }
+    function start() {
+      board = rules.shuffle(); moves = 0; complete = false;
+      status.textContent = ''; render();
     }
+    container.querySelector('#puzzle-restart').addEventListener('click', start, {signal: controller.signal});
+    const image = new Image();
+    image.onload = () => { if (!disposed) grid.classList.add('with-image'); };
+    image.onerror = () => { if (!disposed) grid.classList.remove('with-image'); };
+    image.src = 'static/ironman.png';
+    start();
+    return () => {
+      disposed = true;
+      controller.abort();
+      image.onload = image.onerror = null;
+      board = [];
+      container.replaceChildren();
+    };
   }
-
-  canvas.addEventListener("click", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((e.clientX - rect.left) / tileSize);
-    const y = Math.floor((e.clientY - rect.top) / tileSize);
-    moveTile(x, y);
-  });
-
-  function moveTile(col, row) {
-    const dx = col - empty.x, dy = row - empty.y;
-    if (Math.abs(dx) + Math.abs(dy) !== 1) return;
-
-    const flat = [];
-    let i = 0;
-    for (let r = 0; r < size; r++)
-      for (let c = 0; c < size; c++)
-        flat.push(r === empty.y && c === empty.x ? null : tiles[i++]);
-
-    const temp = flat[row * size + col];
-    flat[empty.y * size + empty.x] = temp;
-    flat[row * size + col] = null;
-    tiles = flat.filter(Boolean);
-
-    empty = { x: col, y: row };
-    moves++;
-    movesText.textContent = "Moves: " + moves;
-    drawPuzzle();
-
-    if (tiles.every((t, i) => t.x === i % size && t.y === Math.floor(i / size)))
-      setTimeout(() => alert(`🎉 Puzzle Solved in ${moves} moves!`), 100);
-  }
-
-  img.onload = initPuzzle;
-}
+});

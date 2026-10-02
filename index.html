@@ -8,7 +8,11 @@
   <title>MJM Sunny | VR, HCI & Data Science</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/games.css">
   <script src="assets/main.js" defer></script>
+  <script src="scripts/games.js" defer></script>
+  <script src="scripts/puzzle-logic.js" defer></script>
+  <script src="scripts/puzzle-game.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -16,7 +20,7 @@
     <a class="wordmark" href="#home" aria-label="MJM Sunny home">MJM SUNNY<span>↗</span></a>
     <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" hidden>Menu +</button>
     <nav id="navigation" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#academics">Education</a><a href="#achievements">Certifications</a><a class="nav-contact" href="#contact">Let’s talk ↗</a>
+      <a href="#about">About</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#academics">Education</a><a href="#achievements">Certifications</a><a href="#games">Games</a><a class="nav-contact" href="#contact">Let’s talk ↗</a>
     </nav>
   </header>
   <main id="main">
@@ -646,8 +650,20 @@
   </div>
 </section>
 
+<section id="games" class="section" aria-labelledby="games-title">
+  <p class="section-label">06 / PLAY SOMETHING SMALL</p>
+  <h2 id="games-title">Games & Experiments</h2>
+  <p>Small puzzles and indie games, made for a quick break. Play in your browser. Each launch starts fresh, with no account or saved progress.</p>
+  <div id="game-list" class="game-list"></div>
+  <noscript><p>Enable JavaScript to play these games.</p></noscript>
+  <dialog id="game-dialog" aria-labelledby="game-title">
+    <div class="game-dialog-header"><h3 id="game-title">Game</h3><button id="close-game" type="button" aria-label="Close game and end session">Close ×</button></div>
+    <div id="game-mount"></div>
+  </dialog>
+</section>
+
       <section id="contact" class="section">
-<p class="section-label">06 / START A CONVERSATION</p>
+<p class="section-label">07 / START A CONVERSATION</p>
         <h2>Get in Touch</h2>
         <p>
           I’m always happy to connect with fellow researchers, developers, and innovators.  

@@ -51,3 +51,45 @@ Then open `http://localhost:8000`. Mobile navigation, reduced-motion preferences
 ## Content note
 
 The supplied section text, dates, publication descriptions, and external destinations have been retained. The introductory hero was rewritten using the supplied information. Publication destinations and biographical claims were not independently verified. In particular, the Teaching Assistant dates remain **Aug 2023 – Dec 2025**, as supplied; check that range before publishing.
+
+
+## Games: fresh sessions, modular scripts
+
+The new `sections/games.html` section hosts browser games in a shared native dialog. Escape, Close, or clicking outside ends a session and returns focus to Play. No progress is saved in cookies or browser storage. Games require JavaScript.
+
+Upload `scripts/` and `assets/games.css` together with the rebuilt `index.html`. Keep your existing image at `static/ironman.png` to show the picture puzzle. It is not included in this package. Without it, the numbered puzzle remains playable. Images are cropped into a square tile layout.
+
+- `scripts/games.js`: game registry, list, dialog, and session cleanup.
+- `scripts/puzzle-logic.js`: legal moves, solvable shuffle, and exact goal check.
+- `scripts/puzzle-game.js`: puzzle UI, keyboard/touch interaction, and optional image.
+- `assets/games.css`: shared game window and puzzle styles.
+
+### Add another game
+
+1. Create `scripts/my-game.js` using the pattern below.
+2. Add `<script src="scripts/my-game.js" defer></script>` after `scripts/games.js` in `template.html`.
+3. Run `python build.py` and upload the rebuilt page and your new script. Its Play entry appears automatically.
+
+```js
+PortfolioGames.register({
+  id: 'my-game', // unique identifier
+  title: 'My Game',
+  description: 'A short description.',
+  mount(container) {
+    // Create fresh state here on every launch.
+    const events = new AbortController();
+    container.innerHTML = '<button type="button">Start</button>';
+    container.querySelector('button').addEventListener('click', () => {
+      // Your gameplay code.
+    }, {signal: events.signal});
+    return () => {
+      events.abort();
+      // Cancel your timers and animation frames, stop audio,
+      // and dispose of any game-engine instance here.
+      container.replaceChildren();
+    };
+  }
+});
+```
+
+For a Unity/WebGL or other engine game, mount its player inside the container and shut down its runtime in the cleanup function. Its exported files must also be uploaded. Keep all per-session state inside `mount`; do not write to persistent browser storage if you want fresh sessions only.
