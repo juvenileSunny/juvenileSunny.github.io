@@ -1,0 +1,7 @@
+PortfolioGames.register({id:'quiet-search',title:'Quiet Search',description:'Find a symbol in clean and cluttered layouts.',mount(c){
+ const s=HCI.session(c,'Find ★ in each grid. Compare six clean grids (9 items) with six cluttered grids (25 items). Wrong choices count as errors; keep searching.');
+ s.begin(()=>{const order=HCI.shuffle([9,25]),rows=[];let block=0,trial=0,errors=0,rt=[];
+ function next(){if(trial===6){rows.push({items:order[block],errors,rt});block++;trial=errors=0;rt=[];if(block===2){s.stage.textContent='Search complete';s.finish(rows.map(r=>`${r.items===9?'Clean (9 items)':'Cluttered (25 items)'}: ${HCI.ms(r.rt)} · ${r.errors} errors`).join('\n')+'\nRandom condition order. This demonstrates layout differences, not a diagnosis.');return;}}
+ const count=order[block],symbols=HCI.shuffle(['★',...Array.from({length:count-1},(_,i)=>['☆','✦','✧','✚'][i%4])]);s.bar.textContent=`${count} items · Trial ${trial+1}/6`;s.stage.replaceChildren();const grid=document.createElement('div');grid.className='hc-grid';grid.style.gridTemplateColumns=`repeat(${Math.sqrt(count)},1fr)`;s.stage.append(grid);const shown=performance.now();let done=false;
+ symbols.forEach(symbol=>{const b=s.button(symbol,()=>{if(done)return;if(symbol==='★'){done=true;rt.push(performance.now()-shown);trial++;next();}else {errors++;b.disabled=true;}},grid);b.setAttribute('aria-label',symbol==='★'?'Filled star': 'Distractor '+symbol);});}next();});return s.cleanup;
+}});

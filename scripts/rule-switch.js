@@ -1,0 +1,7 @@
+PortfolioGames.register({id:'rule-switch',title:'Rule Switch',description:'Switch between sorting by color and by shape.',mount(c){
+ const s=HCI.session(c,'Follow the rule above the shape. COLOR: choose Blue or Orange. SHAPE: choose Circle or Square. Twenty trials; one answer per trial.');
+ s.begin(()=>{let trial=0,previous=null,errors=0;const rt={switch:[],repeat:[]};
+ function next(){if(trial===20){s.stage.textContent='Session complete';s.finish(`Errors: ${errors}/20\nCorrect switch trials: ${HCI.ms(rt.switch)} (n=${rt.switch.length})\nCorrect repeat trials: ${HCI.ms(rt.repeat)} (n=${rt.repeat.length})\nThe first trial is excluded from the timing comparison.`);return;}
+ const rule=Math.random()<.5?'color':'shape',color=Math.random()<.5?'Blue':'Orange',shape=Math.random()<.5?'Circle':'Square';const kind=previous===null?null:previous===rule?'repeat':'switch';previous=rule;trial++;s.bar.textContent=`Trial ${trial}/20 — sort by ${rule.toUpperCase()}`;s.stage.innerHTML=`<div role="img" aria-label="${color} ${shape}" style="width:95px;height:95px;margin:42px auto;background:${color==='Blue'?'#2563ad':'#b94f16'};border-radius:${shape==='Circle'?'50%':'0'}"></div>`;s.controls.replaceChildren();const shown=performance.now();let done=false;
+ (rule==='color'?['Blue','Orange']:['Circle','Square']).forEach(answer=>s.button(answer,()=>{if(done)return;done=true;if(answer===(rule==='color'?color:shape)){if(kind)rt[kind].push(performance.now()-shown);}else errors++;next();}));}next();});return s.cleanup;
+}});

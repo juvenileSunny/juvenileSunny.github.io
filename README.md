@@ -126,3 +126,46 @@ Choose Games → Target Rush → Play, then Start round. Hit targets with a mous
 In `scripts/shooting-game.js`, `duration = 30000` controls the round length in milliseconds. Update the displayed instructions if you change it. `Math.max(650, 1700 - hits * 35)` controls target lifetime: the initial lifetime is 1700 ms, decreasing by 35 ms per hit, with a 650 ms minimum.
 
 Keyboard activation deliberately keeps focus on the target after it moves, making this an accessible alternative to pointer aiming rather than an equivalent difficulty mode. Scores are local to the round; there is no leaderboard or storage.
+
+# Eight modular HCI games
+
+Copy the nine JavaScript files from scripts/ into your existing scripts/ folder. Keep games.js, both puzzle scripts, and shooting-game.js.
+
+Add the following block in BOTH index.html and template.html, inside <head>, after the existing puzzle/shooting scripts. The existing scripts/games.js must be above this block. Include hci-core.js before the eight games.
+
+```html
+<script src="scripts/hci-core.js" defer></script>
+<script src="scripts/signal-watch.js" defer></script>
+<script src="scripts/precision-path.js" defer></script>
+<script src="scripts/target-switch.js" defer></script>
+<script src="scripts/change-detective.js" defer></script>
+<script src="scripts/stop-signal.js" defer></script>
+<script src="scripts/rule-switch.js" defer></script>
+<script src="scripts/quiet-search.js" defer></script>
+<script src="scripts/rhythm-tracker.js" defer></script>
+```
+
+Upload the new scripts and the two edited HTML files. No CSS changes, dependencies, image assets, server, or edits to sections/games.html are needed. Each game registers its own list entry and uses the existing modal. No build command is required if both HTML files are edited. Alternatively, edit template.html and run python build.py to regenerate index.html.
+
+To remove a game, remove its script tag from both HTML files. Each game lives in its own script, so you can edit or add games independently. hci-core.js manages styles, timeouts, events, restart, and disposal. All state is session-only. Hidden tabs end active sessions rather than contaminating timed results.
+
+## Included games
+
+| Game | Session | Results |
+| --- | --- | --- |
+| Signal Watch | 20 symbols, 7 targets | Hits, misses, false responses, correct response time |
+| Precision Path | Wide, narrow, curved tracing paths | Time, boundary crossings, distance per round |
+| Target Switch | 12 small and 12 large targets | Mean time per hit and missed clicks by condition |
+| Change Detective | 5 alternating scenes, 20 seconds maximum each | Detection time, wrong guesses, timeouts |
+| Stop Signal | 14 GO and 6 stop trials | GO responses, misses, successful stops, GO response time |
+| Rule Switch | 20 randomly assigned color/shape rules | Errors, correct switch/repeat response times and counts |
+| Quiet Search | 6 clean and 6 cluttered grids | Mean search time and errors by condition |
+| Rhythm Tracker | 4 practice, 8 visible, 4 hidden beats | Absolute timing error, missed beats, extra taps |
+
+These are interaction demos, not validated tests or evidence of improved everyday attention. Small samples, practice, condition order, screen size, and input device affect results. Target Switch and Quiet Search randomize condition order. No scores are uploaded or saved.
+
+Precision Path requires mouse or touch. Buttons in the other games also support keyboard activation. Keyboard activation changes the nature of pointing/search tasks, so use the same pointer device for comparisons. Rhythm Tracker uses visual feedback only; no audio assets are required. Path distance is measured in fixed canvas coordinate units. Boundary crossings count entries outside a vertical corridor around the path, not time outside. The stop-signal demo uses a fixed 180 ms delay, with no estimated stop-signal reaction time.
+
+## Quick check after upload
+
+Hard refresh the published page. The Games section should show the puzzle, Target Rush (if previously installed), and eight new games. Open one, start, close, then reopen: it should show a fresh start screen. If none of the eight appears, check the hci-core.js path and script order. If only one is missing, check its exact filename and script tag. GitHub Pages filenames are case-sensitive.
