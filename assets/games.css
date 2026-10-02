@@ -12,3 +12,17 @@
 .puzzle-status{min-height:1.8em;margin:15px 0 0;font-size:14px!important;font-weight:600}.session-note{font-size:11px!important;color:var(--muted);margin:10px 0 0}
 @media(max-width:1050px){.site-header nav{gap:11px}}
 @media(max-width:430px){#game-dialog{padding:18px}.game-row{align-items:flex-start;flex-direction:column}.game-dialog-header h3{font-size:20px}}
+
+/* Compact preview, with a disclosure button for the full collection. */
+#games{min-height:0}
+#games .game-list{margin-top:24px}
+#games .game-row{padding:15px 0;gap:18px;flex-direction:row;align-items:center}
+#games .game-row[hidden]{display:none!important}
+#games .game-row>div{min-width:0;flex:1}
+#games .game-row h3{font-size:18px;margin:0 0 4px;line-height:1.35}
+#games .game-row p{font-size:12px;line-height:1.55;margin:0}
+#games .game-row .button{flex-shrink:0;padding:8px 15px;font-size:12px;min-height:40px}
+#games .games-expand{display:block;margin:20px auto 0;background:transparent;border:1px solid var(--line);border-radius:24px;padding:10px 20px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;min-height:44px}
+#games .games-expand:hover{background:var(--accent)}
+#games .games-expand[hidden]{display:none!important}
+@media(max-width:430px){#games .game-row{gap:12px}#games .game-row h3{font-size:16px}#games .game-row .button{padding:8px 12px}}
