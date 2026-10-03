@@ -7,7 +7,7 @@
   const mount = document.getElementById('game-mount');
   const close = document.getElementById('close-game');
   // First three games follow the script order in template.html.
-  const PREVIEW_COUNT = 3;
+  const PREVIEW_COUNT = 4;
   const rows = [];
   let expanded = false;
   const toggle = document.createElement('button');
@@ -51,15 +51,58 @@
       if (registry.has(game.id)) throw new Error('Duplicate game: ' + game.id);
       registry.set(game.id, game);
       const row = document.createElement('article');
-      row.className = 'game-row';
+      row.className = 'game-row game-tile';
       const info = document.createElement('div');
       const title = document.createElement('h3');
       title.textContent = game.title;
       const description = document.createElement('p');
       description.textContent = game.description;
       const play = document.createElement('button');
-      play.type = 'button'; play.className = 'button';
-      play.textContent = 'Play ↗';
+      play.type = 'button'; play.className = 'game-orb';
+      const icons = {
+        'sliding-puzzle': '▦', 'target-rush': '◎', 'signal-watch': '✦',
+        'precision-path': '∿', 'target-switch': '⇄', 'change-detective': '◈',
+        'stop-signal': '⊘', 'rule-switch': '⇆', 'quiet-search': '⌕',
+        'rhythm-tracker': '≋', 'depth-explorer': '◉'
+      };
+      const icon = document.createElement('span');
+      icon.className = 'game-orb-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = icons[game.id] || '◇';
+      const action = document.createElement('span');
+      action.className = 'game-orb-action';
+      action.setAttribute('aria-hidden', 'true');
+      action.textContent = 'Play ↗';
+      play.append(icon, action);
+      const details = document.createElement('button');
+      details.type = 'button'; details.className = 'game-details-toggle';
+      description.id = 'game-description-' + rows.length;
+      description.className = 'game-details';
+      details.setAttribute('aria-controls', description.id);
+      details.setAttribute('aria-label', 'Details for ' + game.title);
+      play.setAttribute('aria-describedby', description.id);
+      let hovering = false, focusing = false, pinned = false;
+      function showDetails() {
+        const open = hovering || focusing || pinned;
+        description.hidden = !open;
+        details.setAttribute('aria-expanded', String(open));
+        details.textContent = open ? 'Less −' : 'Details +';
+        row.classList.toggle('is-revealed', open);
+      }
+      row.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover)').matches) { hovering = true; showDetails(); }
+      });
+      row.addEventListener('mouseleave', () => { hovering = false; showDetails(); });
+      play.addEventListener('focus', () => { focusing = true; showDetails(); });
+      play.addEventListener('blur', () => { focusing = false; showDetails(); });
+      details.addEventListener('click', () => {
+        const currentlyOpen = hovering || focusing || pinned;
+        pinned = !currentlyOpen; hovering = false; focusing = false; showDetails();
+      });
+      row.addEventListener('keydown', event => {
+        if (event.key === 'Escape') { pinned = hovering = focusing = false; showDetails(); }
+      });
+      showDetails();
       play.setAttribute('aria-label', 'Play ' + game.title);
       play.addEventListener('click', () => {
         if (dialog.open) return;
@@ -75,7 +118,7 @@
         }
         close.focus();
       });
-      info.append(title, description); row.append(info, play); list.append(row);
+      info.append(title, details, description); row.append(play, info); list.append(row);
       rows.push(row);
       updateList();
     }

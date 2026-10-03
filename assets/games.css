@@ -26,3 +26,40 @@
 #games .games-expand:hover{background:var(--accent)}
 #games .games-expand[hidden]{display:none!important}
 @media(max-width:430px){#games .game-row{gap:12px}#games .game-row h3{font-size:16px}#games .game-row .button{padding:8px 12px}}
+
+/* Circular game gallery; dialog and game controls remain independent. */
+#games .game-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 28px;border:0;margin-top:32px}
+#games .game-tile{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:14px;text-align:center;border:0;padding:14px 10px 0;min-width:0;min-height:270px}
+#games .game-tile>div{width:100%;flex:none;min-width:0}
+#games .game-tile h3{font-size:16px;font-weight:600;line-height:1.35;margin:0 0 2px}
+#games .game-orb{position:relative;display:grid;place-items:center;flex:none;width:112px;height:112px;border:1px solid #afbd9b;border-radius:50%;padding:0;background:#e5ebd5;color:#193831;cursor:pointer;transition:transform .22s ease,background .22s ease,box-shadow .22s ease;touch-action:manipulation}
+#games .game-tile:nth-child(3n+2) .game-orb{background:#e0e9e7;border-color:#a4bab3}
+#games .game-tile:nth-child(3n+3) .game-orb{background:#ece5d7;border-color:#c3b89d}
+#games .game-orb-icon{font-family:Georgia,serif;font-size:43px;line-height:1;transition:opacity .18s,transform .22s}
+#games .game-orb-action{position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:600;opacity:0;transform:translateY(5px);transition:opacity .18s,transform .22s}
+#games .game-tile.is-revealed .game-orb{background:#193831;color:#f5f4ef;transform:translateY(-4px);box-shadow:0 9px 20px #19383118}
+#games .game-tile.is-revealed .game-orb-icon{opacity:0;transform:scale(.8)}
+#games .game-tile.is-revealed .game-orb-action{opacity:1;transform:translateY(0)}
+#games .game-details-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:5px 10px;font:inherit;font-size:11px;color:var(--muted);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+#games .game-details{font-size:12px;line-height:1.55;max-width:240px;margin:0 auto;color:var(--muted);animation:game-detail-in .18s ease-out}
+#games .game-details[hidden]{display:none!important}
+@keyframes game-detail-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+/* @media(max-width:600px){#games .game-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}#games .game-tile{min-height:258px;padding:10px 0 0}#games .game-orb{width:96px;height:96px}#games .game-tile h3{font-size:14px}#games .game-details-toggle{min-height:44px}#games .game-details{font-size:11px}}
+@media(prefers-reduced-motion:reduce){#games .game-orb,#games .game-orb-icon,#games .game-orb-action{transition:none}#games .game-details{animation:none}#games .game-tile.is-revealed .game-orb{transform:none}} */
+/* Four games in one row on desktop */
+@media (min-width: 761px) {
+  #games .game-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Two games per row on phones */
+@media (max-width: 760px) {
+  #games .game-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
