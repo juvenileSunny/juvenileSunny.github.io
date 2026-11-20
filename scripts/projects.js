@@ -15,12 +15,26 @@ const PROJECTS = [
     description:
       "Local video transcription and subtitle creation with automatic speaker detection, editable speaker names, dialogue merging, selectable time ranges, and flexible video-time and Unix timestamp exports.",
     technologies: ["Python", "Flask", "Whisper", "FFmpeg", "JavaScript"],
+    
     links: [
-      { label: "Try / testing guide", url: "./try-video-speaker-studio.html?focus=rename,merge,compare" },
-      { label: "GitHub", url: "https://github.com/juvenileSunny/video-speaker-studio" },
-      { label: "Releases", url: "https://github.com/juvenileSunny/video-speaker-studio/releases/latest" },
-      { label: "Project page", url: "https://juvenilesunny.github.io/video-speaker-studio/" }
+      {
+        label: "View Project",
+        url: "https://juvenilesunny.github.io/video-speaker-studio/"
+      },
+      {
+        label: "Try / Testing Guide",
+        url: "https://juvenilesunny.github.io/try-video-speaker-studio.html?focus=rename,merge,compare"
+      },
+      {
+        label: "Download App",
+        url: "https://github.com/juvenileSunny/video-speaker-studio/releases"
+      },
+      {
+        label: "Source Code",
+        url: "https://github.com/juvenileSunny/video-speaker-studio"
+      }
     ]
+
   },
   {
     title: "Library Management System",
