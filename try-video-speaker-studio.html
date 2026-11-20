@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Try Video Speaker Studio: guided local setup, speaker labeling, dialogue merging, Whisper model comparison, and subtitle exports.">
+  <meta name="theme-color" content="#f5f4ef">
+  <title>Try Video Speaker Studio | MJM Sunny</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/project-trial.css">
+  <script src="scripts/project-trial.js" defer></script>
+</head>
+<body>
+  <a class="trial-skip" href="#main">Skip to instructions</a>
+  <header class="trial-header">
+    <a class="trial-wordmark" href="./index.html#home">MJM SUNNY <span aria-hidden="true">↗</span></a>
+    <nav aria-label="Project navigation">
+      <a href="./index.html#projects">← All Projects</a>
+      <a href="https://github.com/juvenileSunny/video-speaker-studio" target="_blank" rel="noopener noreferrer">Source Code</a>
+    </nav>
+  </header>
+  <main id="main" class="trial-main">
+    <section class="trial-hero" aria-labelledby="page-title">
+      <p class="trial-kicker">PROJECT LAB / HANDS-ON TESTING</p>
+      <h1 id="page-title">Try <em>Video Speaker Studio.</em></h1>
+      <p class="trial-lede">Transcribe a video, detect speakers, correct their names, join fragmented dialogue, and export subtitles. Follow all the tests or share a link that highlights particular features.</p>
+      <div class="trial-actions">
+        <a class="trial-primary" id="download-app" href="https://github.com/juvenileSunny/video-speaker-studio/releases/latest" target="_blank" rel="noopener noreferrer">Get the latest release ↗</a>
+        <a class="trial-secondary" href="https://github.com/juvenileSunny/video-speaker-studio" target="_blank" rel="noopener noreferrer">View GitHub README ↗</a>
+      </div>
+      <p class="trial-notice"><strong>Local application, not a cloud demo.</strong> The portfolio shows this guide; the video is processed on the person's computer after installation. Please use a recording you have permission to process.</p>
+    </section>
+
+    <section class="trial-section" id="install" aria-labelledby="install-title">
+      <div class="trial-heading"><span>01 / SETUP</span><h2 id="install-title">Start with a short video</h2></div>
+      <div class="trial-steps">
+        <div><b>1</b><p>Install <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">64-bit Python 3.11</a> and <a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener noreferrer">FFmpeg</a>; verify <code>ffmpeg -version</code> works in a new terminal.</p></div>
+        <div><b>2</b><p>Download and extract the latest app ZIP. Run <code>setup_windows.bat</code> (once) and then <code>run_windows.bat</code>. If you already use a supported Python environment, follow the README's existing-venv instructions instead.</p></div>
+        <div><b>3</b><p>Open <code>http://127.0.0.1:5050</code> <strong>on the same computer running the app</strong>. Upload a 30–90 second video with two distinct voices, if available. Initial model downloads require an internet connection.</p></div>
+      </div>
+      <p class="trial-note">For a first run, select <strong>Small</strong>, <strong>Auto GPU/CPU</strong>, and <strong>Detect multiple speakers</strong>. On Windows, use Chrome or Edge to view the synchronized player and transcript.</p>
+    </section>
+
+    <section class="trial-section" id="feature-tests" aria-labelledby="test-title">
+      <div class="trial-heading"><span>02 / HANDS-ON TESTS</span><h2 id="test-title">What to try</h2></div>
+      <p class="trial-muted">When opened from a focused invitation, only the requested tests appear initially. Check a task after completing it. You can also choose the features to include in a new link.</p>
+      <div id="test-list" class="trial-test-list">
+        <article class="trial-test" data-feature="diarization"><div class="trial-test-top"><label><input type="checkbox" class="trial-done"> <strong>Automatic speaker detection</strong></label><span>01</span></div><p>Transcribe a clip with two speakers. Confirm that the transcript identifies separate voices as <code>Speaker 1</code> and <code>Speaker 2</code>. Listen for any speaker switches or misattributed lines.</p></article>
+        <article class="trial-test" data-feature="rename"><div class="trial-test-top"><label><input type="checkbox" class="trial-done"> <strong>Rename speakers</strong></label><span>02</span></div><p>In the <strong>Speakers</strong> panel, change <code>Speaker 1</code> to <code>Alex</code> and <code>Speaker 2</code> to <code>Jordan</code> (or any labels). Verify that their names update in the transcript and export. If one line is assigned incorrectly, fix it using that line's speaker selector.</p></article>
+        <article class="trial-test" data-feature="merge"><div class="trial-test-top"><label><input type="checkbox" class="trial-done"> <strong>Merge fragmented dialogue</strong></label><span>03</span></div><p>Find two or more <strong>consecutive lines by the same speaker</strong>, check their <strong>Merge</strong> boxes, then click <strong>Merge selected lines</strong>. Verify that they become one editable sentence with the original starting and ending video times. Keep a copy before merging; there is currently no Undo Merge.</p></article>
+        <article class="trial-test" data-feature="compare"><div class="trial-test-top"><label><input type="checkbox" class="trial-done"> <strong>Compare Whisper model sizes</strong></label><span>04</span></div><p>Transcribe the <strong>same short clip</strong> using <code>small</code> and <code>medium</code>. On a capable computer, also try <code>large-v3</code>. Note processing time, words corrected, and whether the model ran on GPU or CPU. <strong>Export each run first</strong> or re-upload the clip as a separate project to preserve comparisons.</p></article>
+        <article class="trial-test" data-feature="export"><div class="trial-test-top"><label><input type="checkbox" class="trial-done"> <strong>Export video and Unix timestamps</strong></label><span>05</span></div><p>Export <strong>CSV or JSON</strong> with both <strong>Video time</strong> and <strong>Unix milliseconds</strong> selected. Unix time requires the real recording start time with a timezone; don't substitute the file modification date. Also export just a selected time range.</p></article>
+        <article class="trial-test" data-feature="subtitles"><div class="trial-test-top"><label><input type="checkbox" class="trial-done"> <strong>Create subtitles</strong></label><span>06</span></div><p>Export <code>.srt</code> and <code>.vtt</code>, then try an MP4 with selectable or burned-in subtitles. Check whether captions follow video playback. Subtitles always use video-relative time, not Unix milliseconds.</p></article>
+      </div>
+      <p id="testProgress" class="trial-muted" aria-live="polite">Complete the checklist as you test the app.</p>
+      <button type="button" id="showAllTests" class="trial-text-button" hidden>Show all available tests</button>
+    </section>
+
+    <section class="trial-section" id="models" aria-labelledby="models-title">
+      <div class="trial-heading"><span>03 / HARDWARE CHECK</span><h2 id="models-title">Which Whisper model can this PC run?</h2></div>
+      <p>Official OpenAI Whisper specifications provide approximate VRAM requirements. The app actually uses <strong>faster-whisper with quantization</strong>, which can require less memory. The estimates are a guide, not a compatibility guarantee.</p>
+      <div class="trial-advisor">
+        <div>
+          <label for="gpuType">Compute available</label>
+          <select id="gpuType"><option value="unknown">I'm not sure</option><option value="nvidia">NVIDIA GPU</option><option value="cpu">CPU only / other GPU</option></select>
+        </div>
+        <div>
+          <label for="vram">Dedicated NVIDIA GPU VRAM</label>
+          <select id="vram"><option value="0">Unknown / no NVIDIA GPU</option><option value="1">1 GB</option><option value="2">2 GB</option><option value="4">4 GB</option><option value="6">6 GB</option><option value="8">8 GB</option><option value="10">10 GB</option><option value="12">12 GB</option><option value="16">16 GB</option><option value="24">24 GB</option></select>
+        </div>
+      </div>
+      <p id="modelAdvice" class="trial-advice" aria-live="polite">Choose the compute hardware above to see guidance.</p>
+      <table class="trial-model-table">
+        <thead><tr><th>OpenAI model</th><th>Reference VRAM</th><th>In current app?</th></tr></thead>
+        <tbody>
+          <tr><td>Tiny</td><td>~1 GB</td><td>Yes</td></tr>
+          <tr><td>Base</td><td>~1 GB</td><td>Yes</td></tr>
+          <tr><td>Small</td><td>~2 GB</td><td>Yes</td></tr>
+          <tr><td>Medium</td><td>~5 GB</td><td>Yes</td></tr>
+          <tr><td>Large / Large-v3</td><td>~10 GB</td><td>Yes (Large-v3)</td></tr>
+          <tr><td>Turbo</td><td>~6 GB</td><td>No — future option</td></tr>
+        </tbody>
+      </table>
+      <p class="trial-note"><strong>Find your GPU's memory on Windows:</strong> Open Task Manager → Performance → GPU → <em>Dedicated GPU memory</em>. If you have NVIDIA tools installed, use <code>nvidia-smi --query-gpu=name,memory.total --format=csv,noheader</code> in Command Prompt. <strong>A website cannot reliably read a visitor's GPU VRAM</strong>, so this guide asks you to enter it.</p>
+      <p class="trial-sources" id="modelSourceStatus">Source snapshot: OpenAI Whisper published model table; refreshable by the site maintainer.</p>
+      <p class="trial-sources">Sources: <a href="https://github.com/openai/whisper#available-models-and-languages" target="_blank" rel="noopener noreferrer">OpenAI Whisper model table</a> and <a href="https://github.com/SYSTRAN/faster-whisper#benchmark" target="_blank" rel="noopener noreferrer">faster-whisper benchmarks</a>. Values are documented reference estimates, not live-scraped hardware tests.</p>
+    </section>
+
+    <section class="trial-section" id="share" aria-labelledby="share-title">
+      <div class="trial-heading"><span>04 / SHARE A TARGETED TEST</span><h2 id="share-title">Choose what a reviewer should test</h2></div>
+      <p>Select one or more features, then copy a link. The recipient sees only the highlighted tests first and can reveal the rest. This works on GitHub Pages without an account, tracking, or a backend.</p>
+      <div class="trial-picks" id="shareChoices">
+        <label><input type="checkbox" value="diarization" checked> Speaker detection</label>
+        <label><input type="checkbox" value="rename" checked> Speaker naming</label>
+        <label><input type="checkbox" value="merge" checked> Merge dialogues</label>
+        <label><input type="checkbox" value="compare" checked> Compare Whisper models</label>
+        <label><input type="checkbox" value="export"> Timestamp exports</label>
+        <label><input type="checkbox" value="subtitles"> Subtitle generation</label>
+      </div>
+      <label for="shareUrl" class="trial-label">Direct project testing link</label>
+      <div class="trial-copy-row"><input id="shareUrl" readonly aria-label="Personalized project testing URL"><button type="button" id="copyUrl">Copy link</button></div>
+      <div class="trial-share-buttons"><button type="button" id="copyInvite">Copy invitation text</button><button type="button" id="copyFeedback">Copy my test feedback checklist</button></div>
+      <p class="trial-muted" id="copyStatus" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="trial-footer">Video Speaker Studio is an early open-source application. Speech-recognition and diarization results may contain mistakes. <a href="./index.html#projects">Back to all projects</a></footer>
+</body>
+</html>

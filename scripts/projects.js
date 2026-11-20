@@ -16,6 +16,7 @@ const PROJECTS = [
       "Local video transcription and subtitle creation with automatic speaker detection, editable speaker names, dialogue merging, selectable time ranges, and flexible video-time and Unix timestamp exports.",
     technologies: ["Python", "Flask", "Whisper", "FFmpeg", "JavaScript"],
     links: [
+      { label: "Try / testing guide", url: "./try-video-speaker-studio.html?focus=rename,merge,compare" },
       { label: "GitHub", url: "https://github.com/juvenileSunny/video-speaker-studio" },
       { label: "Releases", url: "https://github.com/juvenileSunny/video-speaker-studio/releases/latest" },
       { label: "Project page", url: "https://juvenilesunny.github.io/video-speaker-studio/" }
@@ -85,7 +86,9 @@ const PROJECTS = [
 
       const actions = createElement("div", "project-actions");
       for (const link of project.links || []) {
-        if (!/^https:\/\//.test(link.url)) continue;
+        // Allow trusted HTTPS links and same-site relative guide pages.
+        const targetUrl = new URL(link.url, document.baseURI);
+        if (targetUrl.protocol !== "https:" && targetUrl.origin !== window.location.origin) continue;
         const anchor = createElement("a", "research-link", link.label + " ↗");
         anchor.href = link.url;
         anchor.target = "_blank";

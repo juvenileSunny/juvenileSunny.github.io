@@ -1,0 +1,12 @@
+{
+  "source": "https://github.com/openai/whisper/blob/main/README.md",
+  "description": "Approximate GPU VRAM requirements for the original OpenAI Whisper implementation; these are not hard limits for faster-whisper.",
+  "models": [
+    {"name": "tiny", "parameters_million": 39, "vram_gb": 1},
+    {"name": "base", "parameters_million": 74, "vram_gb": 1},
+    {"name": "small", "parameters_million": 244, "vram_gb": 2},
+    {"name": "medium", "parameters_million": 769, "vram_gb": 5},
+    {"name": "large", "parameters_million": 1550, "vram_gb": 10},
+    {"name": "turbo", "parameters_million": 809, "vram_gb": 6}
+  ]
+}
