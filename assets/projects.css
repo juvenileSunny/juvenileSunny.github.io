@@ -1,0 +1,72 @@
+/* Project-gallery additions. Existing research styles supply layout and type. */
+.projects-section .project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.projects-section .project-filter {
+  appearance: none;
+  border: 1px solid rgba(40, 46, 42, 0.24);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.projects-section .project-filter:hover,
+.projects-section .project-filter:focus-visible {
+  border-color: currentColor;
+}
+
+.projects-section .project-filter[aria-pressed="true"] {
+  background: #273c35;
+  border-color: #273c35;
+  color: #fff;
+}
+
+.projects-section .project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.1rem 0;
+}
+
+.projects-section .project-tag {
+  display: inline-block;
+  border: 1px solid rgba(40, 46, 42, 0.19);
+  border-radius: 999px;
+  padding: 0.32rem 0.65rem;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.projects-section .project-actions {
+  display: flex;
+  gap: 0.6rem 1.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+
+.projects-section .project-actions .research-link {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+}
+
+.projects-section .project-filter:focus-visible,
+.projects-section .project-actions a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (max-width: 680px) {
+  .projects-section .project-filter { font-size: 0.82rem; padding: 0.55rem 0.8rem; }
+  .projects-section .project-actions { gap: 0.7rem 1.1rem; }
+}

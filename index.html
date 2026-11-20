@@ -9,7 +9,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/games.css">
+  <link rel="stylesheet" href="assets/projects.css">
   <script src="assets/main.js" defer></script>
+  <script src="scripts/projects.js" defer></script>
   <script src="scripts/games.js" defer></script>
   <script src="scripts/puzzle-logic.js" defer></script>
   <script src="scripts/puzzle-game.js" defer></script>
@@ -31,7 +33,7 @@
     <a class="wordmark" href="#home" aria-label="MJM Sunny home">MJM SUNNY<span>↗</span></a>
     <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" hidden>Menu +</button>
     <nav id="navigation" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#academics">Education</a><a href="#achievements">Certifications</a><a href="#games">Games</a><a class="nav-contact" href="#contact">Let’s talk ↗</a>
+      <a href="#about">About</a><a href="#research">Research</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#academics">Education</a><a href="#achievements">Certifications</a><a href="#games">Games</a><a class="nav-contact" href="#contact">Let’s talk ↗</a>
     </nav>
   </header>
   <main id="main">
@@ -429,32 +431,6 @@
     </article>
 
 
-    <!-- Project -->
-    <article class="research-item">
-      
-
-      <div class="research-content">
-        <span class="research-type">Academic Project</span>
-
-        <h3>Library Management System</h3>
-
-        <p class="research-description">
-          Developed a hierarchical desktop application integrated with an SQL
-          database to manage library operations efficiently. Strengthened
-          programming and database management expertise.
-        </p>
-
-        <a
-          href="https://github.com/juvenileSunny/LibraryManagementSystem"
-          target="_blank" rel="noopener noreferrer"
-          class="research-link"
-        >
-          View Code →
-        </a>
-      </div>
-    </article>
-
-
     <!-- Book -->
     <article class="research-item">
       
@@ -516,8 +492,25 @@
   </div>
 </section>
 
+
+<section id="projects" class="section research-section projects-section" aria-labelledby="projects-title">
+  <p class="section-label">03 / SOFTWARE & PROJECTS</p>
+  <div class="research-header">
+    <h2 id="projects-title">Projects & Open Source</h2>
+    <p>
+      Applications, tools, and experiments I've built. Explore the source code,
+      try a demo, or download a release where available.
+    </p>
+  </div>
+
+  <!-- Automatically populated from scripts/projects.js. -->
+  <div id="project-filters" class="project-filters" role="group" aria-label="Filter projects"></div>
+  <div id="projects-list" class="research-list" aria-live="polite"></div>
+  <noscript><p>Enable JavaScript to see the project list.</p></noscript>
+</section>
+
       <section id="experience" class="section">
-<p class="section-label">03 / PROFESSIONAL JOURNEY</p>
+<p class="section-label">04 / PROFESSIONAL JOURNEY</p>
         <h2>Professional Journey</h2>
         <blockquote>
           <strong>“When something is important enough, you do it even if the odds are not in your favor.”</strong> — Elon Musk
@@ -597,7 +590,7 @@
 
 
       <section id="academics" class="section">
-<p class="section-label">04 / ACADEMIC FOUNDATIONS</p>
+<p class="section-label">05 / ACADEMIC FOUNDATIONS</p>
         <h2>Academic Journey</h2>
         <blockquote>
           <strong>“True wisdom is knowing what you do not know.”</strong> — Socrates
@@ -658,7 +651,7 @@
       </section>
 
 <section id="achievements" class="section achievements-section">
-<p class="section-label">05 / CONTINUOUS LEARNING</p>
+<p class="section-label">06 / CONTINUOUS LEARNING</p>
 
   <div class="achievements-header">
     <h2>Achievements & Certifications</h2>
@@ -793,7 +786,7 @@
 </section>
 
 <section id="games" class="section" aria-labelledby="games-title">
-  <p class="section-label">06 / PLAY SOMETHING SMALL</p>
+  <p class="section-label">07 / PLAY SOMETHING SMALL</p>
   <h2 id="games-title">Games & Experiments</h2>
   <p>Small puzzles and indie games, made for a quick break. Play in your browser. Each launch starts fresh, with no account or saved progress.</p>
   <div id="game-list" class="game-list"></div>
@@ -805,7 +798,7 @@
 </section>
 
       <section id="contact" class="section">
-<p class="section-label">07 / START A CONVERSATION</p>
+<p class="section-label">08 / START A CONVERSATION</p>
         <h2>Get in Touch</h2>
         <p>
           I’m always happy to connect with fellow researchers, developers, and innovators.  
