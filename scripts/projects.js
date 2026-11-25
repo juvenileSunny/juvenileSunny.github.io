@@ -34,7 +34,7 @@
       links: [
         {
           label: "Setup & testing guide",
-          url: "./try-video-speaker-studio.html"
+          url: "https://juvenilesunny.github.io/video-speaker-studio/"
         },
         {
           label: "View GitHub",
