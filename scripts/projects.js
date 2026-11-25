@@ -1,135 +1,220 @@
 /**
- * Project gallery for the portfolio website.
+ * Portfolio project gallery.
  *
- * ADD A PROJECT: Copy one object in PROJECTS, change its fields, and commit.
- * The category filter buttons are generated automatically.
+ * To add a project:
+ * Copy an object in PROJECTS and update its details.
+ * New categories automatically appear as filter buttons.
  *
- * Links to Video Speaker Studio assume the corresponding repository and
- * GitHub Pages site have been published. Update them if your repo name differs.
+ * Requires these elements in sections/projects.html:
+ * - project-filters
+ * - project-count
+ * - project-list
  */
-const PROJECTS = [
-  {
-    title: "Video Speaker Studio",
-    category: "AI & Tools",
-    type: "Open-source application · 2026",
-    description:
-      "Local video transcription and subtitle creation with automatic speaker detection, editable speaker names, dialogue merging, selectable time ranges, and flexible video-time and Unix timestamp exports.",
-    technologies: ["Python", "Flask", "Whisper", "FFmpeg", "JavaScript"],
-    
-    links: [
-      {
-        label: "View Project",
-        url: "https://juvenilesunny.github.io/video-speaker-studio/"
-      },
-      {
-        label: "Try / Testing Guide",
-        url: "https://juvenilesunny.github.io/try-video-speaker-studio.html?focus=rename,merge,compare"
-      },
-      {
-        label: "Download App",
-        url: "https://github.com/juvenileSunny/video-speaker-studio/releases"
-      },
-      {
-        label: "Source Code",
-        url: "https://github.com/juvenileSunny/video-speaker-studio"
-      }
-    ]
 
-  },
-  {
-    title: "Library Management System",
-    category: "Software",
-    type: "Desktop application",
-    description:
-      "Desktop software with an SQL database for managing library operations and records.",
-    technologies: ["SQL", "Desktop application"],
-    links: [
-      { label: "GitHub", url: "https://github.com/juvenileSunny/LibraryManagementSystem" }
-    ]
-  }
+(() => {
+  "use strict";
 
-  // Add your next project here, for example:
-  // ,{
-  //   title: "My Next Project",
-  //   category: "XR & Games",
-  //   type: "Interactive application · 2027",
-  //   description: "What it does and why you built it.",
-  //   technologies: ["Unity", "C#"],
-  //   links: [{ label: "GitHub", url: "https://github.com/USERNAME/REPO" }]
-  // }
-];
-
-(function initializeProjectGallery() {
-  const list = document.getElementById("projects-list");
-  const filters = document.getElementById("project-filters");
-  if (!list || !filters) return;
-
-  const categories = ["All", ...new Set(PROJECTS.map((project) => project.category))];
-  let activeCategory = "All";
+  const PROJECTS = [
+    {
+      title: "Video Speaker Studio",
+      category: "AI & Tools",
+      type: "Open-source application · 2026",
+      description:
+        "Local video transcription and subtitle creation with automatic " +
+        "speaker detection, editable speaker names, dialogue merging, " +
+        "selectable time ranges, and flexible video-time and Unix " +
+        "timestamp exports.",
+      technologies: [
+        "Python",
+        "Flask",
+        "Whisper",
+        "FFmpeg",
+        "JavaScript"
+      ],
+      links: [
+        {
+          label: "Setup & testing guide",
+          url: "./try-video-speaker-studio.html"
+        },
+        {
+          label: "View GitHub",
+          url: "https://github.com/juvenileSunny/video-speaker-studio"
+        }
+      ]
+    },
+    {
+      title: "Library Management System",
+      category: "Desktop Applications",
+      type: "Academic Project",
+      description:
+        "A hierarchical desktop application integrated with an SQL " +
+        "database to manage library operations.",
+      technologies: ["SQL", "WEB-DEV", "JS"],
+      links: [
+        {
+          label: "View Code",
+          url: "https://github.com/juvenileSunny/LibraryManagementSystem"
+        }
+      ]
+    }
+  ];
 
   function createElement(tag, className, text) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text !== undefined) node.textContent = text;
-    return node;
+    const element = document.createElement(tag);
+
+    if (className) {
+      element.className = className;
+    }
+
+    if (text !== undefined) {
+      element.textContent = text;
+    }
+
+    return element;
   }
 
-  function renderProjects() {
-    list.replaceChildren();
-    const visible = PROJECTS.filter((item) => activeCategory === "All" || item.category === activeCategory);
+  function createProject(project) {
+    const article = createElement("article", "research-item");
+    const content = createElement("div", "research-content");
 
-    if (!visible.length) {
-      list.appendChild(createElement("p", "project-empty", "No projects in this category yet."));
+    content.append(
+      createElement("span", "research-type", project.type),
+      createElement("h3", "", project.title),
+      createElement("p", "research-description", project.description)
+    );
+
+    const technologies = createElement("div", "project-tech");
+    technologies.setAttribute("aria-label", "Technologies");
+
+    for (const technology of project.technologies ?? []) {
+      technologies.append(
+        createElement("span", "project-tag", technology)
+      );
+    }
+
+    const actions = createElement("div", "project-actions");
+
+    for (const link of project.links ?? []) {
+      let url;
+
+      try {
+        url = new URL(link.url, document.baseURI);
+      } catch {
+        continue;
+      }
+
+      const isWebLink = ["http:", "https:"].includes(url.protocol);
+      const isLocalPreview =
+        window.location.protocol === "file:" &&
+        url.protocol === "file:";
+
+      if (!isWebLink && !isLocalPreview) {
+        continue;
+      }
+
+      const anchor = createElement(
+        "a",
+        "research-link",
+        `${link.label} →`
+      );
+
+      anchor.href = url.href;
+
+      if (isWebLink && url.origin !== window.location.origin) {
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+      }
+
+      actions.append(anchor);
+    }
+
+    if (technologies.childElementCount > 0) {
+      content.append(technologies);
+    }
+
+    if (actions.childElementCount > 0) {
+      content.append(actions);
+    }
+
+    article.append(content);
+    return article;
+  }
+
+  function initializeGallery() {
+    const filters = document.getElementById("project-filters");
+    const count = document.getElementById("project-count");
+    const list = document.getElementById("project-list");
+
+    if (!filters || !count || !list) {
       return;
     }
 
-    for (const project of visible) {
-      // Reuse existing research classes so the new section matches the site.
-      const card = createElement("article", "research-item project-item");
-      const content = createElement("div", "research-content");
-      content.appendChild(createElement("span", "research-type", project.type));
-      content.appendChild(createElement("h3", "", project.title));
-      content.appendChild(createElement("p", "research-description", project.description));
+    // null means "All", so it cannot conflict with a category name.
+    const categories = [
+      null,
+      ...new Set(PROJECTS.map(project => project.category))
+    ];
 
-      const tech = createElement("div", "project-tech");
-      tech.setAttribute("aria-label", "Technologies used");
-      for (const item of project.technologies || []) {
-        tech.appendChild(createElement("span", "project-tag", item));
-      }
-      content.appendChild(tech);
+    const filterButtons = [];
 
-      const actions = createElement("div", "project-actions");
-      for (const link of project.links || []) {
-        // Allow trusted HTTPS links and same-site relative guide pages.
-        const targetUrl = new URL(link.url, document.baseURI);
-        if (targetUrl.protocol !== "https:" && targetUrl.origin !== window.location.origin) continue;
-        const anchor = createElement("a", "research-link", link.label + " ↗");
-        anchor.href = link.url;
-        anchor.target = "_blank";
-        anchor.rel = "noopener noreferrer";
-        actions.appendChild(anchor);
+    function render(selectedCategory) {
+      const visibleProjects = PROJECTS.filter(project =>
+        selectedCategory === null ||
+        project.category === selectedCategory
+      );
+
+      list.replaceChildren(
+        ...visibleProjects.map(createProject)
+      );
+
+      for (const { button, category } of filterButtons) {
+        button.setAttribute(
+          "aria-pressed",
+          String(category === selectedCategory)
+        );
       }
-      content.appendChild(actions);
-      card.appendChild(content);
-      list.appendChild(card);
+
+      const total = visibleProjects.length;
+      count.textContent =
+        `${total} project${total === 1 ? "" : "s"}`;
+
+      if (total === 0) {
+        list.append(
+          createElement("p", "", "No projects in this category yet.")
+        );
+      }
     }
-  }
 
-  function renderFilters() {
     filters.replaceChildren();
+
     for (const category of categories) {
-      const button = createElement("button", "project-filter", category);
+      const button = createElement(
+        "button",
+        "project-filter",
+        category === null ? "All" : category
+      );
+
       button.type = "button";
-      button.setAttribute("aria-pressed", String(activeCategory === category));
+      button.setAttribute("aria-pressed", "false");
+
       button.addEventListener("click", () => {
-        activeCategory = category;
-        renderFilters();
-        renderProjects();
+        render(category);
       });
-      filters.appendChild(button);
+
+      filterButtons.push({ button, category });
+      filters.append(button);
     }
+
+    render(null);
   }
 
-  renderFilters();
-  renderProjects();
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeGallery,
+      { once: true }
+    );
+  } else {
+    initializeGallery();
+  }
 })();
